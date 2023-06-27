@@ -1,2 +1,0 @@
-# Forritun
- Allt tengt forritun
