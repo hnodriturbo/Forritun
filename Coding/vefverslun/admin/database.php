@@ -1,5 +1,5 @@
 <?php 
-    $dbname = 'taskmanager';
+    $dbname = 'vefverslun';
     $servername = "localhost";
     $user = "root";
     $pass = "8655";

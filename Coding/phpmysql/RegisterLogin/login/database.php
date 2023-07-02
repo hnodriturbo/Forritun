@@ -1,5 +1,5 @@
 <?php 
-    $dbname = 'taskmanager';
+    $dbname = 'registerlogin';
     $servername = "localhost";
     $user = "root";
     $pass = "8655";

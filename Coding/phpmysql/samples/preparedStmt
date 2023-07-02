@@ -1,0 +1,78 @@
+<?php 
+
+        /* Inserting data into table users */
+
+// Prepare the statement
+$stmt = $conn->prepare("INSERT INTO users (username, password, name, email) VALUES (?, ?, ?, ?)");
+
+// Bind the variables to the prepared statement
+$stmt->bind_param("ssss", $username, $password, $name, $email);
+
+// Execute the statement
+$stmt->execute();
+
+// Close the statement and database connection
+$stmt->close();
+$conn->close();
+
+/* ---------------------------------------------------------------------- */
+
+        /*  Selecting data with a WHERE clause */
+        
+// Prepare the statement
+$stmt = $conn->prepare("SELECT * FROM tasks WHERE category = ?");
+
+// Bind the variable to the prepared statement
+$stmt->bind_param("s", $category);
+
+// Execute the statement
+$stmt->execute();
+
+// Fetch the results
+$result = $stmt->get_result();
+
+// Process the results
+while ($row = $result->fetch_assoc()) {
+    // Do something with each row
+}
+
+// Close the statement and database connection
+$stmt->close();
+$conn->close();
+
+
+/* ---------------------------------------------------------------------- */
+
+        /* Updating data with multiple parameters */
+
+// Prepare the statement
+$stmt = $conn->prepare("UPDATE tasks SET title = ? WHERE taskid = ?");
+
+// Bind the variables to the prepared statement
+$stmt->bind_param("si", $newTitle, $taskid);
+
+// Execute the statement
+$stmt->execute();
+
+// Close the statement and database connection
+$stmt->close();
+$conn->close();
+
+/* ---------------------------------------------------------------------- */
+
+        /* Deleting data with a single parameter */
+
+// Prepare the statement
+$stmt = $conn->prepare("DELETE FROM tasks WHERE taskid = ?");
+
+// Bind the variable to the prepared statement
+$stmt->bind_param("i", $taskid);
+
+// Execute the statement
+$stmt->execute();
+
+// Close the statement and database connection
+$stmt->close();
+$conn->close();
+
+?>

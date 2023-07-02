@@ -1,25 +1,43 @@
 
+<!-- Tengjast database og skila villu ef tenging gengur ekki -->
 <?php
-/* Connecting to the database:
-In this example, the mysqli constructor is used to establish a 
-connection to the MySQL database. If the connection fails, an 
-error message is displayed. */
+
+/* Connecting to the database: */
 $servername = "localhost";
 $username = "your_username";
 $password = "your_password";
 $dbname = "your_database";
 
+/* The mysqli constructor is used to establish a connection to the MySQL database. */
 $conn = new mysqli($servername, $username, $password, $dbname);
+
+/* If the connection fails, an error message is displayed. */
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 ?>
 
 
+<!-- Ná í gögn eftir $username og skila  -->
+<?php
+
+$sql = "SELECT * FROM users WHERE username=$username";
+
+$result = mysqli_query($conn,$sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "Name: " . $row["name"] . "Email: " . $row["email"];
+    } 
+    
+}else {
+    echo "No result found";
+}
+
+?>
 
 
-
-<!-- Tengjast og framkvæma query -->
+<!-- Tengjast og Sækja gögn sem eru inn í POST og framkvæma query í sömu runu //  -->
 <?php
 
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
