@@ -1,0 +1,543 @@
+/*----- Ýmislegt -----*/
+@font-face {
+  font-family: 'customFont';
+  src: url('font/Eastwood.woff2') format('woff2'), /* WOFF2 format */
+       url('font/Eastwood.woff') format('woff'), /* WOFF format */
+       url('font/Eastwood.ttf') format('truetype'); /* TTF format */
+}
+
+.custom-text {
+  font-family: 'customFont', sans-serif;
+}
+
+/* Texta skuggi */
+.my-text-shadow {
+  text-shadow: 2px 2px 30px var(--bs-gray-500);
+}
+.nowrap {
+  white-space: nowrap;
+}
+.center {
+  /* display: flex; */
+  /* justify-content: center; */
+  text-align: center;
+  align-items: center;
+
+} 
+.justify-content {
+  justify-content: center;
+} 
+
+
+
+
+/* Body taggið */
+body {
+  margin: 0 auto;
+  text-shadow: 2px 2px 50px var(--bs-gray-500);
+  background: linear-gradient(to bottom, #0e071a, #495057);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+ /*  background: linear-gradient(to bottom, #1a1330, #495057); */
+  /* background: linear-gradient(to bottom, #1a1330, #212121);  */ /* Þessi var ágætur */
+/* 
+  color: white;
+  background-size: 100%;
+*/
+}
+
+
+/* col-10 er content síðunnar */
+.col-10 {
+  position: relative;
+  z-index: 1;
+  /* overflow-y: scroll; */
+  /* margin-top: 100px; */
+  padding: 25px;
+}
+
+.mittmargin {
+  margin-left: 2vw;
+}
+.sidebar {
+  position: relative;
+  /* margin-left: 1.8vw; */
+  width: 10vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+  /* box-shadow: 30px 0 10px rgba(0, 0, 0, 0.1); */
+  background-color: rgba(168, 63, 63, 0.5); 
+}
+@media (max-width: 767px) {
+  .sidebar {
+    display: none;
+  }
+}
+/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+/* backdrop-filter: blur(5px); */ /* Adjust the blur value as desired */
+
+
+/* Litir sóttir úr navbar dark í sass.css */
+.sidebar-colors .nav-link {
+  color: rgba(255, 255, 255, 0.55);
+}
+.sidebar-colors .nav-link:hover {
+  color: rgba(255, 255, 255, 0.75);
+}
+.sidebar-colors .nav-link.disabled {
+  color: rgba(255, 255, 255, 0.25);
+}
+.sidebar-colors .nav-link.active {
+  color: #fff;
+}
+.sidebar-colors .navbar-brand {
+  color: #fff;
+}
+.sidebar-colors .navbar-brand:hover {
+  color: #fff;
+}
+.sidebar-colors .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.sidebar-colors .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+
+/* ---------- Navbar ----------- */
+/* sótt úr sass.css til að breyta */
+.navbar-brand {
+  align-items: center;
+  padding-top: var(--bs-navbar-brand-padding-y);
+  padding-bottom: var(--bs-navbar-brand-padding-y);
+  margin-right: 0;
+  font-size: var(--bs-navbar-brand-font-size);
+  color: var(--bs-navbar-brand-color);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.navbar-brand .bi {
+  color: var(--bs-gray-500);
+}
+
+.navbar-expand-lg {
+  flex-wrap: nowrap; /* Prevent navbar items from wrapping */
+}
+
+.nav-link.btn.btn-outline-secondary.rounded-pill {
+  padding: 0.5vw; /* or 1rem for rem units */
+  font-size: 1vw; /* or 1.5rem for rem units */
+}
+
+
+
+
+
+  /* ------------------------- Hér er allt innan index.php síðunnar ----------------------------------------- */
+
+
+.table-dark {
+  --bs-table-color: #fff;
+  --bs-table-bg: #212529;
+  --bs-table-border-color: #373b3e;
+  --bs-table-striped-bg: #2c3034;
+  --bs-table-striped-color: #fff;
+  --bs-table-active-bg: #373b3e;
+  --bs-table-active-color: #fff;
+  --bs-table-hover-bg: #323539;
+  --bs-table-hover-color: #fff;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+}
+
+
+
+/* 
+.card {
+  
+}
+ */
+
+
+/* Þetta virkaði ekki en card-header:first-child virkaði */
+/*
+.card-header {
+  border-radius: 25px;
+  margin-top: 0px;
+  z-index: 1;
+  padding: 8px;
+  width: 75%; 
+}
+*/
+
+
+.table-scrollable {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.table-bordered {
+  width: 100%;
+  table-layout: fixed;
+}
+.table {
+  margin-bottom: 0px;
+}
+.mytable {
+  max-width: 100%; 
+  overflow-x: auto;
+}
+.table-auto {
+  width: auto;
+}
+.table-bordered {
+  table-layout: auto;
+}
+/* 
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ */
+
+
+
+.card {
+  --bs-card-spacer-y: 1rem;
+  --bs-card-spacer-x: 1rem;
+  --bs-card-title-spacer-y: 0.5rem;
+  --bs-card-title-color: ;
+  --bs-card-subtitle-color: ;
+  --bs-card-border-width: var(--bs-border-width);
+  --bs-card-border-color: var(--bs-border-color-translucent);
+  --bs-card-border-radius: var(--bs-border-radius);
+  --bs-card-box-shadow: ;
+  --bs-card-inner-border-radius: calc(var(--bs-border-radius) - (var(--bs-border-width)));
+  --bs-card-cap-padding-y: 0.5rem;
+  --bs-card-cap-padding-x: 1rem;
+  --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
+  --bs-card-cap-color: ;
+  --bs-card-height: ;
+  --bs-card-color: ;
+  --bs-card-bg: var(--bs-body-bg);
+  --bs-card-img-overlay-padding: 1rem;
+  --bs-card-group-margin: 0.75rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: var(--bs-card-height);
+  color: var(--bs-body-color);
+  word-wrap: break-word;
+  background-color: var(--bs-card-bg);
+  background-clip: border-box;
+  border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+  border-radius: 20px;       /* var(--bs-card-border-radius); */
+
+}.card {
+  background-color: transparent;
+  border: none;
+}
+
+.card-header:first-child {
+  border-radius: 25px;
+  margin-top: 0px;
+  z-index: 1;
+  width: 90%;
+  padding: 6px;
+  align-items: center;
+  margin-left: 3.5vw;
+}
+
+.card-body {
+  margin-top: -25px;
+}
+
+.center-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .card-lg-width {
+/*     width: 80%;
+    max-width: 80%; */
+    margin: 0 auto; /* Center horizontally */
+    display: flex; /* Enable vertical centering */
+    flex-direction: column; /* Stack header and body vertically */
+    
+  }
+}
+
+@media (max-width: 991px) {
+  .card-lg-width {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto; /* Center horizontally */
+    display: flex; /* Enable vertical centering */
+    flex-direction: column; /* Stack header and body vertically */
+    
+  }
+}
+
+/* Default styles for the table */
+.table-responsive {
+  border-radius: 10px;
+}
+
+
+/* Default styles for the table-responsive */
+.table-responsive th,
+.table-responsive td {
+  /* font-size: 0.7vw; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------- er ekki að nota í augnablikinu ----------*/
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 0px; /* Adjust the margin as needed */
+  padding: 20px;
+  /* margin-left: 100px; */
+  /* margin-left: 220px; */ /* Adjust the margin as needed to create space for the sidebar */
+
+}
+#adminUsersCol,
+#usersListCol {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .content {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+/* Styles for the .panel-body class */
+.panel-body {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .panel-body {
+    /* Adjust the styles for medium-sized screens */
+    /* For example, reduce font size or adjust padding */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* Minn eigin sidebar css style */
+/* 
+.sidebar {
+  position: absolute;
+  top: 15%;
+  left: 2%;
+  bottom: 25%;
+
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+ */
+/*  
+ .sidebar {
+  width: 100%; 
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+ */
+ 
+/* Þessi er ekki í notkun í augnablikinu sem prufa */
+/* Þessi geymir table structure sem inniheldur svo gögnin úr database */
+.fixed-container {
+  position: relative;
+
+  display: flex;/* virðist ekki hafa áhrif */
+  flex-direction: column; /* virðist ekki hafa  */
+
+/*  top: 25%; *//* Adjust the top position as needed */
+/*   left: 22%; */  /* Adjust the left position as needed */
+  z-index: -1; /* Set a high z-index to ensure it appears above other elements */
+  border-radius: 25%; /* Set the desired border radius for rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a box shadow for a subtle effect */
+}
+
+
+/* 
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+*/
+
+
+/* ----- ýmsar skipanir sem ég tími ekki eyða -----  */
+/* 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  flex-wrap: wrap; 
+}
+*/
+/* backdrop-filter: blur(4px); */
+/*  background-size: cover; */
+/*  background-blend-mode: multiply; */
+
+/* ýmislegt sem var ekki að virka í body */  
+    /* background-color: var(--bs-gray-900);   */
+    /* background-color: transparent; */
+    /* background-repeat: repeat-x; */
+    /* background-size: auto; */
+    /* background-image: url('img/background-image.jpg');  */ /* Replace with your image path */
+    /* background-size: cover;  */  /* Ensure the background image covers the entire body */
+    /* background-blend-mode: multiply; */   /* Blend the background image and color */
+
+/* virkar ekki í augnablikinu */
+/* 
+.my-horizontal-line {
+  color: black;
+}
+*/
+
+/* Þetta virðist ekki virka. ég set bakgrunnsmyndina inn í body tag í htmlinu */
+/* 
+.background {
+    background-image: url('img/background-image.jpg');
+}
+*/
+
+/* 
+.container-fluid {
+  background-color: transparent;
+  background-image: url('img/backgroundsidebar.jpg') !important;
+  background-size: cover;
+  background-blend-mode: multiply;
+}
+*/
+/* 
+.container-fluid {
+  position: absolute;
+  top: 25%;
+  left: 6%;
+  bottom: 25%;
+  right: 6%;
+  border-radius: 25%; 
+  overflow: hidden; 
+}
+*/
+/* 
+.background-image {
+  background-image: url('img/backgroundsidebar.jpg'); 
+  background-size: cover;
+  background-blend-mode: multiply; 
+}
+ */
+ 
+/* Blur á bakgrunn á navbar expand */
+/* 
+.navbar-expand-lg {
+  backdrop-filter: blur(4px);
+}
+ */
+/* 
+  .table-responsive-custom {
+    overflow-x: auto;
+  }
+
+  .table-responsive-custom table {
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  @media (max-width: 576px) {
+    .table-responsive-custom table {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 577px) and (max-width: 768px) {
+    .table-responsive-custom table {
+      width: 120%;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 992px) {
+    .table-responsive-custom table {
+      width: 130%;
+    }
+  }
+
+  @media (min-width: 993px) {
+    .table-responsive-custom table {
+      width: 140%;
+    }
+  } */
+

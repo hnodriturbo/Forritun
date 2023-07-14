@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/hnodriturbo/Forritun/issues"
   },
-  "homepage": "https://github.com/hnodriturbo/Forritun#readme"
+  "homepage": "https://github.com/hnodriturbo/Forritun#readme",
+  "dependencies": {
+    "bootstrap-icons": "^1.10.5"
+  }
 }
