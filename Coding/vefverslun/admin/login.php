@@ -201,12 +201,12 @@ function fetchAdminInfo($username) {
             <div class="col-lg-8 col-12">
 
 
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-12">
                         <!-- ----- FORM START ----- -->
                         <form action="login.php" method="POST" name="login">
 
-                            <div class="card card-lg-width w-75">
+                            <div class="card card-lg-width w-75 mx-auto">
                                 <div class="card-header bg-dark-subtle center center-header mx-auto">
                                 <h4 class="card-title text-center">Innskráning Admins</h4>
                                 </div>

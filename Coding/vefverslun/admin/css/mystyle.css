@@ -1,41 +1,32 @@
 /*----- Ýmislegt -----*/
-@font-face {
-  font-family: 'customFont';
-  src: url('font/Eastwood.woff2') format('woff2'), /* WOFF2 format */
-       url('font/Eastwood.woff') format('woff'), /* WOFF format */
-       url('font/Eastwood.ttf') format('truetype'); /* TTF format */
-}
-
-.custom-text {
-  font-family: 'customFont', sans-serif;
-}
 
 /* Texta skuggi */
 .my-text-shadow {
   text-shadow: 2px 2px 30px var(--bs-gray-500);
 }
+/* Passar uppá að texti sé í einni línu */
 .nowrap {
   white-space: nowrap;
 }
+/* Miðja texta og items */
 .center {
-  /* display: flex; */
-  /* justify-content: center; */
   text-align: center;
   align-items: center;
-
-} 
-.justify-content {
-  justify-content: center;
-} 
-
-
-
+}
+.bg-dark {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}
+.my-horizontal-line {
+  color: rgb(224, 202, 202);
+  border-top: 3px solid rgb(221, 193, 193);
+}
 
 /* Body taggið */
 body {
   margin: 0 auto;
   text-shadow: 2px 2px 50px var(--bs-gray-500);
-  background: linear-gradient(to bottom, #0e071a, #495057);
+  background: linear-gradient(to bottom, #07030a, #2e343b);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -47,38 +38,63 @@ body {
 */
 }
 
-
-/* col-10 er content síðunnar */
-.col-10 {
-  position: relative;
-  z-index: 1;
-  /* overflow-y: scroll; */
-  /* margin-top: 100px; */
-  padding: 25px;
-}
-
+/* ýta sidebar aðeins til hliðar */
 .mittmargin {
   margin-left: 2vw;
 }
+/* Ef skjárinn er minni en LG stærð þá breytist margin í 0 */
+@media (max-width: 991.98px) {
+  .mittmargin {
+    margin-left: 0;
+  }
+}
+.mythumbnail {
+  max-width: 20vw;
+  max-height: 20vw;
+  width: auto;
+  height: auto;
+}
+/* stillingar á background í sidebar */
+.backgroundsidebar {
+  position: relative;
+  width: 12vw;
+  border-radius: 100px 100px 60px 60px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  background-image: url("../img/backgroundsidebar.jpg");
+  background-size: cover;
+  /* núlla allt margin, padding og border - override bs settings */
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  border-right: none !important;
+  border-left: none !important;
+}
+
 .sidebar {
   position: relative;
-  /* margin-left: 1.8vw; */
-  width: 10vw;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 40px;
-  /* box-shadow: 30px 0 10px rgba(0, 0, 0, 0.1); */
-  background-color: rgba(168, 63, 63, 0.5); 
+  --bs-bg-opacity: 0.8;
+  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+  
 }
+
 @media (max-width: 767px) {
   .sidebar {
     display: none;
   }
 }
-/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-/* backdrop-filter: blur(5px); */ /* Adjust the blur value as desired */
+
 
 
 /* Litir sóttir úr navbar dark í sass.css */
@@ -132,15 +148,128 @@ body {
 .nav-link.btn.btn-outline-secondary.rounded-pill {
   padding: 0.5vw; /* or 1rem for rem units */
   font-size: 1vw; /* or 1.5rem for rem units */
+  border: 0.5px solid grey;
+  backdrop-filter: blur(3px);
 }
 
+.bi {
+  align-items: start;
+  justify-content: start;
+  text-align: left;
+}
 
 
 
 
   /* ------------------------- Hér er allt innan index.php síðunnar ----------------------------------------- */
 
+/* --------- MY CONTENT SETTINGS - CARD & TABLE DISPLAY */
 
+/* --------- MÍNAR STILLINGAR Á TABLE OG CARD HEADER ----------- */
+/* puts card header display on top */
+.card-header {
+  z-index: 5;
+}
+/* move card body up - below the card header */
+.card-body {
+  margin-top: -25px;
+}
+/* Card header border radius */
+.minnborderradius {
+  border-radius: 40px 40px 12px 12px !important;
+  width: 100%;
+  height: 100%;
+  padding: 0.3vw;
+  margin-bottom: -10px;
+  font-size: 22px;
+  /*  border-bottom: transparent !important;  */
+}
+.borderradius {
+  border-radius: 40px 40px 40px 40px !important;
+}
+.table {
+  margin-bottom: 0px;
+}
+/* Scrollable table og border radius utan um table (card body) */
+ .table-responsive {
+     overflow-x: auto;
+     border-radius: 30px 30px 4px 4px;
+     border-color: var(--bs-dark-border-subtle) !important;
+ }
+ .mytable {
+     width: 100%;
+     align-items: center;
+     justify-content: center;
+ }
+ .mytable table {
+     table-layout: fixed;
+     min-width: 1000px;
+ }
+ .mytable th,
+ .mytable td {
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+ }
+ .mytable .last-column {
+     white-space: normal;
+     overflow: visible;
+ }
+ .mytable td:last-child {
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+/* Stærðirnar á columns í table */
+ .first-column {
+     width: 5%;
+ }
+ .name-column {
+     width: 10%;
+ }
+ .email-column {
+     width: 20%;
+ }
+ .action-column {
+  width: 23%;
+ }
+.other-column {
+  width: 20%;
+  text-overflow: ellipsis;
+}
+
+/* Orders table í orders.php */
+/* .orders-action-column {
+  width: 12%;
+} */
+
+/* Custom styles for buttons in the action-column */
+.orders-action-column {
+  width: fit-content; /* Set the desired width for the buttons */
+  margin-right: 5px; /* Optional: Add some spacing between buttons */
+}
+
+
+.custom-btn {
+  width: 100%; /* Set the desired width for the buttons */
+}
+
+/* Media query for small screens - adjust the width as needed */
+@media (max-width: 768px) {
+  .orders-action-column .custom-btn {
+    width: 100%; /* Adjust the width for small screens */
+  }
+}
+
+
+
+
+
+
+
+
+/* NÁÐ Í ÚR SASS.CSS TIL AÐ SJÁ LITINA Á TABLE-DARK */
 .table-dark {
   --bs-table-color: #fff;
   --bs-table-bg: #212529;
@@ -154,60 +283,7 @@ body {
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
 }
-
-
-
-/* 
-.card {
-  
-}
- */
-
-
-/* Þetta virkaði ekki en card-header:first-child virkaði */
-/*
-.card-header {
-  border-radius: 25px;
-  margin-top: 0px;
-  z-index: 1;
-  padding: 8px;
-  width: 75%; 
-}
-*/
-
-
-.table-scrollable {
-  overflow-x: auto;
-  white-space: nowrap;
-}
-.table-bordered {
-  width: 100%;
-  table-layout: fixed;
-}
-.table {
-  margin-bottom: 0px;
-}
-.mytable {
-  max-width: 100%; 
-  overflow-x: auto;
-}
-.table-auto {
-  width: auto;
-}
-.table-bordered {
-  table-layout: auto;
-}
-/* 
-.container {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
- */
-
-
-
+/* NÁÐ Í ÚR SASS.CSS TIL AÐ SJÁ CARD EIGINLEIKANA */
 .card {
   --bs-card-spacer-y: 1rem;
   --bs-card-spacer-x: 1rem;
@@ -235,110 +311,57 @@ body {
   height: var(--bs-card-height);
   color: var(--bs-body-color);
   word-wrap: break-word;
-  background-color: var(--bs-card-bg);
   background-clip: border-box;
-  border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+  /* background-color: var(--bs-card-bg); */
+  /* border: var(--bs-card-border-width) solid var(--bs-card-border-color); */
+  background-color: transparent; /* MY MODIFICATION */
+  border: none; /* MY MODIFICATION */
   border-radius: 20px;       /* var(--bs-card-border-radius); */
-
-}.card {
-  background-color: transparent;
-  border: none;
 }
-
-.card-header:first-child {
-  border-radius: 25px;
-  margin-top: 0px;
-  z-index: 1;
-  width: 90%;
-  padding: 6px;
-  align-items: center;
-  margin-left: 3.5vw;
-}
-
-.card-body {
-  margin-top: -25px;
-}
-
-.center-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@media (min-width: 992px) {
-  .card-lg-width {
-/*     width: 80%;
-    max-width: 80%; */
-    margin: 0 auto; /* Center horizontally */
-    display: flex; /* Enable vertical centering */
-    flex-direction: column; /* Stack header and body vertically */
-    
-  }
-}
-
-@media (max-width: 991px) {
-  .card-lg-width {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto; /* Center horizontally */
-    display: flex; /* Enable vertical centering */
-    flex-direction: column; /* Stack header and body vertically */
-    
-  }
-}
-
-/* Default styles for the table */
-.table-responsive {
-  border-radius: 10px;
-}
-
-
-/* Default styles for the table-responsive */
-.table-responsive th,
-.table-responsive td {
-  /* font-size: 0.7vw; */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* --------- er ekki að nota í augnablikinu ----------*/
+/* ---------- OUTLINED TEXT ??? ekki virkt --------- */
 
+/*  
+.justify-content {
+  justify-content: center;
+  display: flex; 
+  justify-content: center; 
+} 
+ */
+
+
+/* Safari compatibility WEBKIT-TEXT-FILL-COLOR */
+/* 
+.outlined-text {
+  -webkit-text-fill-color: transparent; 
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000;
+  text-shadow: 0 0 2px #000;
+}
+ */
+/* 
 .main-container {
   display: flex;
   flex-direction: column;
-
-  margin-top: 0px; /* Adjust the margin as needed */
+  margin-top: 0px;
   padding: 20px;
-  /* margin-left: 100px; */
-  /* margin-left: 220px; */ /* Adjust the margin as needed to create space for the sidebar */
-
+  margin-left: 100px;
+  margin-left: 220px;
 }
+ */
+/* 
 #adminUsersCol,
 #usersListCol {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-
+ */
+/* 
 .content {
   width: 100%;
   height: 100%;
@@ -358,7 +381,8 @@ body {
     align-items: center;
   }
 }
-/* Styles for the .panel-body class */
+ */
+/* 
 .panel-body {
   width: 100%;
   height: 100%;
@@ -370,8 +394,6 @@ body {
 }
 @media (min-width: 768px) {
   .panel-body {
-    /* Adjust the styles for medium-sized screens */
-    /* For example, reduce font size or adjust padding */
     width: 100%;
     height: 100%;
     display: flex;
@@ -380,7 +402,7 @@ body {
     align-items: center;
   }
 }
-
+ */
 /* Minn eigin sidebar css style */
 /* 
 .sidebar {
@@ -415,19 +437,38 @@ body {
  
 /* Þessi er ekki í notkun í augnablikinu sem prufa */
 /* Þessi geymir table structure sem inniheldur svo gögnin úr database */
+/* 
 .fixed-container {
   position: relative;
-
-  display: flex;/* virðist ekki hafa áhrif */
-  flex-direction: column; /* virðist ekki hafa  */
-
-/*  top: 25%; *//* Adjust the top position as needed */
-/*   left: 22%; */  /* Adjust the left position as needed */
-  z-index: -1; /* Set a high z-index to ensure it appears above other elements */
-  border-radius: 25%; /* Set the desired border radius for rounded corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a box shadow for a subtle effect */
+  display: flex;
+  flex-direction: column; 
+ */
+  /* z-index: -1; */ /* Set a high z-index to ensure it appears above other elements */
+ /*  border-radius: 25%; */ /* Set the desired border radius for rounded corners */
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */ /* Add a box shadow for a subtle effect */
+  /* top: 25%; *//* Adjust the top position as needed */
+  /* left: 22%; */  /* Adjust the left position as needed */
+/* } */
+/* 
+.container-fluid.backgroundsidebar {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
 }
-
+ */
+/*  
+.sidebar.sidebar-colors {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity));
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+ */
 
 /* 
   .card {
@@ -461,11 +502,7 @@ body {
     /* background-blend-mode: multiply; */   /* Blend the background image and color */
 
 /* virkar ekki í augnablikinu */
-/* 
-.my-horizontal-line {
-  color: black;
-}
-*/
+
 
 /* Þetta virðist ekki virka. ég set bakgrunnsmyndina inn í body tag í htmlinu */
 /* 

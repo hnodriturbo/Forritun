@@ -1,5 +1,5 @@
 <!-- Navbarið sem er efst á síðunni - Það expandar niður og er með leit -->
-<nav class="navbar bg-dark fixed-top kirsty-regular-italic" data-bs-theme="dark">
+<nav class="navbar bg-dark fixed-top kirsty-bold-italic" data-bs-theme="dark">
   <div class="container-fluid">
     
     <a class="navbar-brand navbar-dark" href="#">

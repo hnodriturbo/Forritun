@@ -173,7 +173,77 @@
 
 
 
+ echo '
+<!-- Þessi col-lg-10 col-12 er utan um allt content síðunnar -->
+<div class="col-lg-10 col-12 d-lg-flex offset-lg-2 kirsty-regular-italic offset" style="font-size: 13px;">
+    <!-- Container row og col-lg-8 sem breytist í col-12 á minni skjám -->
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-9 col-12 d-lg-flex">
+                <!-- Formið byrjar hérna og er utan um allt cardið -->
+                <form action="products_action.php?source=products&product_id=' . $product_id . '&action=edit&confirm=confirm" method=POST name=updateProduct class="w-100">
+                    <!-- Card sem fyllir upp í plássið (w-100) -->
+                    <div class="card card-lg-width w-100" style="margin-top: 12vw;">
+                        <div class="card-header">
+                        <h4 class="btn btn-dark btn-outline-secondary rounded-pill w-100 d-flex justify-content-center align-items-center center" style="font-size: 22px; cursor: default;">Edit Product Info</h4>
+                        </div>
+                        <div class="card-body">
+                            <!-- Row og 2 cols -->
+                            <div class="row p-3 align-items-center"> 
+                                <div class="col-1">
+                                    <label class="text-align" style="color: #CCCCCC;">Product Name:</label>
+                                </div>
+                                <div class="col-11" style="padding: 0;">
+                                    <input class="form-control bg-dark-subtle" type="text" name="product_name" value="' . $productInfo['name'] . '" aria-label="default input example">  
+                                </div>
+                            </div> 
+                            <!-- Row og 2 cols -->
+                            <div class="row p-3 align-items-center"> 
+                                <div class="col-1">
+                                    <label class="text-align" style="color: #CCCCCC;">Description:</label>
+                                </div>
+                                <div class="col-6" style="padding: 0;">
+                                    <input class="form-control bg-dark-subtle" type="text" name="product_description" value="' . $productInfo['description'] . '" aria-label="default input example">
+                                </div>
+                                <div class="col-1">
+                                    <label class="text-align" style="color: #CCCCCC;">Price:</label>
+                                </div>
+                                <div class="col-4" style="padding: 0;">
+                                    <input class="form-control bg-dark-subtle" type="text" name="product_price" value="' . $productInfo['price'] . '" aria-label="default input example">
+                                </div>
+                            </div>
+                            <!-- Row og 2 cols -->
+                            <div class="row p-3 align-items-center"> 
+                                <div class="col-1">
+                                    <label class="text-align" style="color: #CCCCCC;">Cost Price:</label>
+                                </div>
+                                <div class="col-5" style="padding: 0;">
+                                    <input class="form-control bg-dark-subtle" type="text" name="product_c_price" value="' . $productInfo['c_price'] . '" aria-label="default input example">
+                                </div>
+                                <div class="col-1">
+                                    <label class="text-align" style="color: #CCCCCC;">Category Id:</label>
+                                </div>
+                                <div class="col-5" style="padding: 0;">
+                                    <input class="form-control bg-dark-subtle" type="text" name="product_category_id" value="' . $productInfo['category_id'] . '" aria-label="default input example">
+                                </div>
+                            </div>
 
+                        </div><!-- card-body -->
+                        <div class="card-footer pb-5 d-flex justify-content-center">
+                        <!-- update takkinn -->
+                        <button class="btn btn-outline-secondary" type="POST" name="update" style="width: 50%;">Update</button>
+                        </div>
+                    </div><!-- card card-lg-width w-100" style="margin-top: 12vw;" -->
+                </form> <!-- form -->
+            </div> <!-- col-12 admin users table -->
+        </div><!-- row -->
+    </div><!-- container-fluid -->
+</div> <!-- col-lg-10 col-12 -->
+    
+    
+    
+    
+    ';
 
 
 
