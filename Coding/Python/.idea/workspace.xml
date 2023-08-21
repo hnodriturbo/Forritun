@@ -1,93 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="0e0eaf8b-8b03-46dd-89a3-59dcabfbbf05" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/Forritun.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.vscode/launch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MySQL_Skipanir" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../php/www/basics.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../php/www/calculator.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../php/www/functions.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../php/www/numbers.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../php/www/phpserverguide.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../php/www/strings.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../php/www/user_input.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Klasar Hermenn Ættbálkar.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Glærur/Föll.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Glærur/Python Dictionary.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Glærur/Samþjöppun lista (list comprehension) (2) (1).docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Glærur/upplýsingar um föll.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Skilaverkefni/02 Skilaverkefni - dict-foll-tuple _B.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Skilaverkefni/BU 01 Skilaverkefni H22-S2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Skilaverkefni/verkefni3_V23_2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Skilaverkefni/verkefni4_V23_2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/Dictionary/Æfingadæmi fyrir dictionary (1) - buinn.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/Dictionary/Æfingadæmi fyrir dictionary (2) - buinn.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/Föll/1 Æfingaverkefni 1 - foll - buinn.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/Föll/2 Föll 2 - buinn.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/Föll/3 FOR1TÖ05BU_Æfingaverkefni_Föll_3 - buinn.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/Föll/4 aefingaverk_foll 4 - Buinn.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/Föll/Æfing dict FÖLL - tuple - buinn.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/Föll/Æfingaverkefni FÖLL - sameinað 1 og 3 saman - buinn.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/Tuples/Æfingaverkefni fyrir tuples - buinn.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/klasar/Glærur - Klasar.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/klasar/Glærur - MIT-9 Klasar og erfðir.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/klasar/Verkefni 2 - Búið til klasa sem er með tvö föll.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/klasar/Verkefni 3 - Klasaæfing ks.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/klasar/hermenn.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/klasar/verkefni 1 - klasar verkefni.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/list comprehension/Samþjöppun lista (list comprehension) - buinn.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/list comprehension/list comprehension - buinn.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/skráarvinnsla/Buinn/A - Python skráarvinnsla verk 1.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/skráarvinnsla/Buinn/B - Python skráarvinnsla verk 2.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/skráarvinnsla/Buinn/C - Skráarverkefni C - Föll - V2021.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/skráarvinnsla/D - skráarverkefni D-csv.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/skráarvinnsla/Dæmi - Skráarvinnsla_í_vinnslu (2).docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/skráarvinnsla/Skrárvinnsla.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/afangi 2/Verkefni/skráarvinnsla/lykilord.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/02- breytur og innsláttur frá notanda (1).pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/02_æfingarverkefni if else (1).docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/03 - Float og villuboð.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/03_Æfingaverkefni_Modulus.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/04 -Skilyrðissetningar (1).pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/04 Skilaverkefni listar og strengir.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/04_Æfingaverkefni_While.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/05- heiltöludeiling skilyrðissetningar.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/05_Æfingaverkefni með FOR lykkjur  með while H19.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/06 -while.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/07 Forlykkja  range og print.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/08 Æfingarverkefni - listar.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/08 Æfingaverkefni random.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/08_Æfingaverkefni_random.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/09-Strengir-uppfært.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/10 -Listar.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/10A- Sýnidæmi listar.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/Auka if og else.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/AukaVerkefni strengur.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/Lokaverkefni_H2022.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/Skil-1 V23-S1.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/Skil-2 V23-S1.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/Skilaverkefni-3-for-og-string.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/Strengir æfingaverkefni 1.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/Strengjaæfing.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/While æfing (1).docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/aukaverkefni í lok annar.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/Æfing - hlutapróf 3-BU.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/Æfingarverkefni forslaufur nr 3.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/Æfingaverkefni fyrir FOR slaufur TURTLE.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Verkefni/Áfangi 1/Æfingaverkefni fyrir hlutapróf 3.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Python.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/action.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/admins.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/css/mystyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/../vefverslun/admin/css/mystyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/css/sass.css" beforeDir="false" afterPath="$PROJECT_DIR$/../vefverslun/admin/css/sass.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/database.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/image.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/img/background-image - Shortcut.lnk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/img/product1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/img/product2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/img/product3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vefverslun/admin/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/js/bootstrap.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/js/jquery copy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/js/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/js/menu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/js/smoothImage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/login.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/logout.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/orders.action.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/orders.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/products.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/products_action.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/prufa.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vefverslun/admin/sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/topnavbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vefverslun/admin/topnavbar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/useraction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/admin/users.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vefverslun/geymsla/geyma.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vefverslun/geymsla/geyma.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Setup Script" />
+      </list>
+    </option>
   </component>
   <component name="ProjectId" id="2RmfcsU9jsYk3V9FWYhZm2tmjec" />
   <component name="ProjectViewState">
@@ -98,7 +58,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/hreis/OneDrive/Desktop/Skóli/Forritun/Coding/Python/venv"
+    "last_opened_file_path": "C:/Users/hreis/OneDrive/Desktop/Skóli/Forritun/Coding/Python/venv",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RunManager" selected="Python.Klasar Hermenn Ættbálkar">

@@ -1,145 +1,38 @@
-<?php 
+              <!-- -------------------- ADMIN SÍÐAN --------------------- -->
+            <!-- ------------------- HREIÐAR PÉTURSSON -------------------- -->
+          <!-- -------------------------------------------------------------- -->
+        <!-- --------------------------- MADE 2023 ---------------------------- -->
 
+
+<?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+/* starta session og header virkar ekki nema hafa ob_start */
+ob_start();
 session_start();
 
+/* Store the current URL in a session variable */
+if (!isset($_SESSION['requested_url'])) {
+    $_SESSION['requested_url'] = $_SERVER['REQUEST_URI'];
+}
 
-if (!isset($_SESSION['admin_uid']) || !isset($_SESSION['login_date']) ) {
-    header("Location: login.php?error=You need to be logged in to see this site.");
+/* Athuga hvort viðkomandi sé loggaður inn og redirecta í samræmi við það */
+if(!isset($_SESSION['admin_uid']) || !isset($_SESSION['login_date'])) {
+    header("Location: login/login.php?error=You need to be logged in to see this site");
     exit();
 }
-else if (isset($_COOKIE['admin_uid']) && time() > $_COOKIE['login_date']) {
-    header("Location: login.php?error=You need to be logged in to see this site.");
+else if(isset($_COOKIE['admin_uid']) && time() > $_COOKIE['login_date']) {
+    header("Location: login/login.php?error=You need to be logged in to see this site");
     exit();
 }
+$base_url = "";
+require_once "database/database.php";
+require_once "sidebar.php";
+require_once "topnavbar.php";
+require_once "overview_functions.php";
 
-// Rest of your code
-
-include "database.php";
-include "sidebar.php";
-include "topnavbar.php";
 
 
-function getAdminUsers() {
-    global $conn;
-
-    $stmt = $conn->prepare("SELECT * FROM admin_accounts LIMIT 10");
-
-    $stmt->execute();
-
-    $result = $stmt->get_result();
-
-    while ($row = $result->fetch_assoc()) {
-        $admin_id = $row['admin_id'];
-        $admin_name = $row['name'];
-        $admin_email = $row['email'];
-        $admin_username = $row['username'];
-        $admin_password = $row['password'];
-        $admin_uid = $row['admin_uid'];
-
-        echo "<tr>";
-        echo "<td>$admin_id</td>";
-        echo "<td>$admin_name</td>";
-        echo "<td>$admin_email</td>";
-        echo "<td>$admin_username</td>";
-        echo "<td>$admin_password</td>";
-        echo "<td>$admin_uid</td>";
-        echo "</tr>";
-    }
-}
-function getUsers() {
-    global $conn;
-
-    $stmt = $conn->prepare("SELECT * FROM users LIMIT 10");
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    while($row = $result->fetch_assoc()) {
-        $user_id = $row['user_id'];
-        $firstname = $row['firstname'];
-        $lastname = $row['lastname'];
-        $email = $row['email'];
-        $username = $row['username'];
-        $password = $row['password'];
-        $address = $row['address'];
-        $address2 = $row['address2'];
-        $postalcode = $row['postalcode'];
-        $city = $row['city'];
-        $country = $row['country'];
-        $other = $row['other'];
-        
-        echo "<tr>";
-        echo "<td>$user_id</td>";
-        echo "<td>$firstname</td>";
-        echo "<td>$lastname</td>";
-        echo "<td>$email</td>";
-        echo "<td>$username</td>";
-        echo "<td>$address</td>";
-        echo "<td>$address2</td>";
-        echo "<td>$postalcode</td>";
-        echo "<td>$city</td>";
-        echo "<td>$country</td>";
-        echo "<td>$other</td>";
-        echo "</tr>";
-    }
-}
-function getLogs() {
-    global $conn;
-
-    $stmt = $conn->prepare("SELECT * FROM logs LIMIT 10");
-
-    $stmt->execute();
-
-    $result = $stmt->get_result();
-
-    while($row = $result->fetch_assoc()) {
-        $logs_id = $row['logs_id'];
-        $user_id = $row['user_id'];
-        $action = $row['action'];
-        $date = $row['date'];
-
-        echo "<tr>";
-        echo "<td>$logs_id</td>";
-        echo "<td>$user_id</td>";
-        echo "<td>$action</td>";
-        echo "<td>$date</td>";
-        echo "</tr>";
-    }
-}
-function getProducts() {
-    global $conn;
-    /* undirbý tengingu */
-    $stmt = $conn->prepare("SELECT * FROM products LIMIT 10");
-    if (!$stmt) {
-        echo "error in preparing the query: " . $conn->error;
-        return;
-    }
-    /* executa queryið */
-    if(!$stmt->execute()) {
-        echo "error in executing the query: " . $stmt->error;
-        return;
-    }
-    $result = $stmt->get_result();
-    if($result->num_rows === 0) {
-        echo "no rows found";
-    }
-    while($row = $result->fetch_assoc()) {
-        $product_id = $row['product_id'];
-        $image = $row['image'];
-        $name = $row['name'];
-        $description = $row['description'];
-        $price = $row['price'];
-        $category_id = $row['category_id'];
-
-        echo "<tr>";
-        echo "<td>$product_id</td>";
-        echo "<td>$image</td>";
-        echo "<td>$name</td>";
-        echo "<td>$description</td>";
-        echo "<td>$price</td>";
-        echo "<td>$category_id</td>";
-        echo "</tr>";
-    }
-}
 ?>
 
 
@@ -187,7 +80,7 @@ function getProducts() {
                             </div> <!-- table-responsive -->
                         </div> <!-- card-body -->
                         <div class="card-footer pb-5 d-flex justify-content-end">
-                            <a href="users.php">
+                            <a href="users/users.php">
                                 <button type="button" class="btn btn-outline-secondary justify-content-center">Open Users List</button>
                             </a>
                         </div> <!-- card-footer -->
@@ -228,7 +121,7 @@ function getProducts() {
                             </div>
                         </div>
                         <div class="card-footer pb-5 d-flex justify-content-end">
-                            <a class="btn btn-outline-secondary" href="admins.php">Open Admin Users</a>
+                            <a class="btn btn-outline-secondary" href="admins/admins.php">Open Admin Users</a>
                         <!-- <button type="button" class="btn btn-outline-secondary">Open Admin Users List</button> -->
                         </div>
                     </div>
@@ -260,7 +153,7 @@ function getProducts() {
                                 </div>
                             </div>
                             <div class="card-footer pb-5 d-flex justify-content-end">
-                            <a class="btn btn-outline-secondary" href="logs.php">Open Logs</a>
+                            <a class="btn btn-outline-secondary" href="logs/logs.php">Open Logs</a>
                             </div>
                         </div><!-- card-body -->
                     </div><!-- card card-lg-width -->

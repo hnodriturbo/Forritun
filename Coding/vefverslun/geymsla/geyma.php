@@ -1,5 +1,6 @@
-
-
+<!--     Online link to bootstrap
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css">
+ -->
    <!--   Þessi takki togglar navbar upp og niður held ég -->
    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="toggleSidebar()">
@@ -244,6 +245,41 @@
     
     
     ';
+<?php
+
+    while($row = $result->fetch_assoc()) {
+    // ... Other code ...
+  
+    $order_status = $row['order_status'];
+  
+    // Determine the CSS class based on the order status
+    $status_class = '';
+    switch ($order_status) {
+      case 'Pending':
+        $status_class = 'status-pending';
+        break;
+      case 'Processing':
+        $status_class = 'status-processing';
+        break;
+      case 'Completed':
+        $status_class = 'status-completed';
+        break;
+      case 'Cancelled':
+        $status_class = 'status-cancelled';
+        break;
+      default:
+        // Use a default class for unknown status or handle it as needed
+        $status_class = 'status-default';
+    }
+  
+    // Add the CSS class to the <td> element
+    echo "<td class='$status_class'>$order_status</td>";
+  
+    // ... Rest of the code ...
+  }
+
+?>
+  
 
 
 
