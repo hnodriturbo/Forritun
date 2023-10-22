@@ -1,0 +1,92 @@
+{
+    "skra": [
+        {
+            "fornafn": "Konrad",
+            "eftirnafn": "Gudmundsson",
+            "aldur": 63,
+            "símanúmer": "8990567",
+            "heimili": {
+                "heimilisfang": "Hraunbraut 27",
+                "bær": "Kópavogur",
+                "póstfang": "200"
+            }
+        },
+        {
+            "fornafn": "Helga",
+            "eftirnafn": "Jónsdóttir",
+            "aldur": 54,
+            "símanúmer": "8654321",
+            "heimili": {
+                "heimilisfang": "Laugarásvegur 5",
+                "bær": "Reykjavík",
+                "póstfang": "101"
+            }
+        },
+        {
+            "fornafn": "Einar",
+            "eftirnafn": "Ólafsson",
+            "aldur": 28,
+            "símanúmer": "8215790",
+            "heimili": {
+                "heimilisfang": "Vesturgata 12",
+                "bær": "Akureyri",
+                "póstfang": "600"
+            }
+        },
+        {
+            "fornafn": "Anna",
+            "eftirnafn": "Björnsdóttir",
+            "aldur": 35,
+            "símanúmer": "8123456",
+            "heimili": {
+                "heimilisfang": "Skólagata 15",
+                "bær": "Ísafjörður",
+                "póstfang": "400"
+            }
+        },
+        {
+            "fornafn": "Þórir",
+            "eftirnafn": "Stefánsson",
+            "aldur": 42,
+            "símanúmer": "8923451",
+            "heimili": {
+                "heimilisfang": "Hafnargata 7",
+                "bær": "Grindavík",
+                "póstfang": "240"
+            }
+        },
+        {
+            "fornafn": "Brynhildur",
+            "eftirnafn": "Eiríksdóttir",
+            "aldur": 31,
+            "símanúmer": "8790123",
+            "heimili": {
+                "heimilisfang": "Miðhraun 4",
+                "bær": "Hafnarfjörður",
+                "póstfang": "220"
+            }
+        },
+        {
+            "fornafn": "Hreiðar",
+            "eftirnafn": "Pétursson",
+            "aldur": 36,
+            "símanúmer": "7617603",
+            "heimili": {
+                "heimilisfang": "Dugguvogur 15",
+                "bær": "Reykjavík",
+                "póstfang": "104"
+            }
+        },
+        {
+            "fornafn": "Pétur",
+            "eftirnafn": "Jónsson",
+            "aldur": 63,
+            "símanúmer": "8462875",
+            "heimili": {
+                "heimilisfang": "Dugguvogur 15",
+                "bær": "Reykjavík",
+                "póstfang": "104"
+            }
+        }
+    ]
+}

@@ -5,6 +5,9 @@
  
 
 <?php
+
+use Mockery\Generator\StringManipulation\Pass\Pass;
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ob_start(); // Required for header("Location...")
@@ -16,6 +19,7 @@ if (!isset($_SESSION['requested_url'])) {
     $_SESSION['requested_url'] = $_SERVER['REQUEST_URI'];
 }
 
+
 // Redirect if not logged in
 if (!isset($_SESSION['admin_uid']) || !isset($_SESSION['login_date']) ||
     (isset($_COOKIE['admin_uid']) && time() > $_COOKIE['login_date'])) {
@@ -23,9 +27,10 @@ if (!isset($_SESSION['admin_uid']) || !isset($_SESSION['login_date']) ||
     exit();
 }
 
-
+# Check if the page is requested with ajax or not
 $is_ajax = (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
 
+// Load the core parts of the page if it's not an ajax request (first load)
 if (!$is_ajax) {
     include_once "$base_url" . "sidebar.php";
     include_once "$base_url" . "topnavbar.php";
@@ -45,13 +50,26 @@ if (!$is_ajax) {
         <div id="main-content-container">';
 }
 
+if (!$is_ajax && $_SERVER['REQUEST_METHOD'] != 'GET') {
+    include 'create_menu.php';
+}
 
+/* if (isset($action)) {
+    if ($action == '')
+} */
 
+/* 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     switch ($action) {
         case 'go-to-index':
             include 'create_menu.php';
             break;
+        default:
+
+        
+    }
+} */
+/*
         case 'create-order-step-1':
             $goBackButtonAttribute = 'go-to-index';
             $goBackButtonText = 'Go Back To Index';
@@ -87,8 +105,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             }
         }
 } 
-
-else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+ */
+if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') {
 
     // Execute code based on the retrived $action variable
     switch ($action) {
@@ -112,7 +130,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'create-order-step-3':
 
             // Include the create_order_items view page
-            include('create_order_items.php');
+            include('create_order_info.php');
             break;
 
  

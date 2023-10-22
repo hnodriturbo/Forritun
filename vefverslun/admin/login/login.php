@@ -10,12 +10,13 @@ session_start();
 
 $base_url = "../";
 /* Includa */
-include_once "$base_url" . "login/login_functions.php";
-include_once "$base_url" . "database/database.php";
-include_once "$base_url" . "topnavbar.php";
+/* C:\Users\hreis\OneDrive\Desktop\Skóli\Forritun\vefverslun\admin\login\login_functions.php
+ */
+include_once "login_functions.php";
+include_once "../database/database.php";
+include_once "../topnavbar.php";
 
-
-
+echo "<br><br><br><br><br>" . $_SESSION['requested_url'];
 
 /* If error comes through the url retrive it and store in $error */
 $error = $_GET['error'] ?? '';
@@ -113,7 +114,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       }
     </style>
     <!-- Titill síðunnar -->
-    <title>Admin - Crystal 3D Pictures</title>
+    <title>Admin - Crystal Clear Memories</title>
 </head>
 <body>
 <!-- Container fyrir skipulag contents -->
@@ -131,18 +132,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_SESSION['requested_url'])) {
                     $redirect_url = $_SESSION['requested_url'];
                     unset($_SESSION['requested_url']);
-                    header("Refresh: 3; url=" . $base_url . $redirect_url);
+                    header("Refresh: 3; url=" . $redirect_url);
                     exit();
                 } else {
                     // If no url was set, then redirect to index.php
                     header("refresh:3;url=" . $base_url . "index.php");
                     exit();
                 }
-                break;
             break;
-            case 'login_error':
-                include_once "login_form.php";
-                break;
+        case 'login_error':
+            include_once "login_form.php";
+            break;
         default:
             include_once "login_form.php";
             break;

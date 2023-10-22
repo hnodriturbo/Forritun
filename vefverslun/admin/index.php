@@ -89,10 +89,7 @@ require_once "overview_functions.php";
 
                 </div><!-- d-flex align-items-center justify-content-center h-100 col-10 mx-auto -->
             </div><!-- row users table -->
-        </div> <!-- container fluid -->
-        
-        <!-- container fyrir admin table og logs table -->
-        <div class="container-fluid">
+
             <div class="row">
                 <div class="col-lg-6 col-12">
                     <div class="card card-lg-width">

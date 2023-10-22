@@ -18,53 +18,68 @@ $add_order_header = '
 $button_row = 
 '<br>
         <!-- BUTTON ROW -->
-<div class="row align-items-center justify-content-center d-flex">
-<div class="col-12">
-<div class="row p-1">
+<div class="row align-items-center justify-content-center d-flex p-1">
 
 
+
+
+
+
+<!-- ----- PROCEED TO NEXT STEP BUTTON ----- -->
+<div class="col-sm-4 col-12 d-flex justify-content-xl-end justify-content-center m-sm-0 m-2 order-0 order-sm-2">
+    <button id="create-order-proceed" 
+            type="submit"
+            class="nowrap btn btn-lg btn-outline-success toggle-btn-outline-secondary-box-shadow create-order-button d-flex align-items-center create-order-sm-size-buttons"
+            data-action="' . $proceedButtonAttribute . '"
+            data-formSubmit="' . $formSubmitValue . '"
+    >
+
+        <span>' . $proceedButtonText . '</span> 
+        <i class="bi bi-arrow-right-circle create-order-button-logo" style="margin-left: 20px;"></i>
+    </button> 
+    </form>
+</div> <!-- col-3 d-flex -->
+
+
+
+
+<!-- CLEAR FORM BUTTON -->
+<div class="col-sm-4 col-12 d-flex justify-content-center m-sm-0 m-2 order-1">
+    <button id="clear-form-button"
+            type="button"
+            class="nowrap btn btn-lg btn-outline-info toggle-btn-outline-info-box-shadow clear-form-button-js create-order-button d-flex align-items-center create-order-sm-size-buttons"
+    >
+        <i class="bi bi-x-circle create-order-button-logo" style="margin-right: 20px;"></i>
+        <span>Clear</span>
+    </button>
+</div>
 
 
 
 
         <!-- ----- CANCEL BUTTON ----- -->
-<div class="col-3 d-flex justify-content-start">
+<div class="col-sm-4 col-12 d-flex justify-content-xl-start justify-content-center m-sm-0 m-2 order-2 order-sm-0">
     <button id="create-order-go-back"
-    type="button" 
-    class="nowrap btn btn-lg btn-outline-danger toggle-btn-outline-danger-box-shadow d-inline-flex align-items-center justify-content-center"
-    data-action="' . $goBackButtonAttribute . '">
+            type="button" 
+            class="nowrap btn btn-lg btn-outline-danger toggle-btn-outline-danger-box-shadow create-order-button d-flex align-items-center create-order-sm-size-buttons"
+            data-action="' . $goBackButtonAttribute . '"
+    >
 
-    <i class="bi bi-x-circle" style="font-size: 20px; margin-right: 5px;"></i>
-    <span>' . $goBackButtonText . '</span>
+            <i class="bi bi-arrow-left-circle create-order-button-logo" style="margin-right: 20px;"></i>
+            <span>' . $goBackButtonText . '</span>
 
     </button>
 </div>
 
-<!-- CLEAR FORM BUTTON -->
-<div class="col-6 d-flex justify-content-center">
-    <button id="clear-form-button"
-    type="button"
-    class="nowrap btn btn-lg btn-outline-info toggle-btn-outline-info-box-shadow clear-form-button">
-    <span>Clear</span>
-    </button>
-</div>
-    <!-- ----- PROCEED TO NEXT STEP BUTTON ----- -->
-<div class="col-3 d-flex justify-content-end align-items-end">
-    <button id="create-order-proceed" 
-    type="submit"
-    class="nowrap btn btn-lg btn-outline-success toggle-btn-outline-secondary-box-shadow d-inline-flex align-items-center justify-content-center"
-    data-action="' . $proceedButtonAttribute . '"
-    data-formSubmit="' . $formSubmitValue . '">
 
-        <span>' . $proceedButtonText . '</span> 
-        <i class="bi bi-arrow-right-circle" style="font-size: 20px; margin-left: 5px;"></i>
-    </button> 
-    </form>
-</div>
+
+
+
+
+
 </div>  <!-- row p-1 align-items-center -->
 
-</div> 
-</div>
+
 </div> <!-- card-body -->
 <br><br><br>
 ';
@@ -90,6 +105,7 @@ $progress_bar_step_1 = '
 </div> <!-- card-footer -->
 ';
 $progress_bar_step_2 = '
+<div class="card-footer">
 <div class="row align-items-center center justify-content-center d-flex whitetext" style="font-size: 24px;">
     <div class="col-3">Step 1</div>
     <div class="col-3">Step 2</div>
@@ -100,9 +116,24 @@ $progress_bar_step_2 = '
     <div class="progress-bar bg-dark progress-bar-striped progress-bar-animated" style="width: 25%"></div>
     <div class="progress-bar progress-bar-striped bg-info progress-bar-animated borderradius" style="width: 25%"></div>
 </div>
+</div> <!-- card-footer -->
+';
+$progress_bar_step_3 = '
+
+<div class="card-footer">
+<div class="row align-items-center center justify-content-center d-flex whitetext" style="font-size: 24px;">
+       <div class="col-3">Step 1</div>
+       <div class="col-3">Step 2</div>
+       <div class="col-3">Step 3</div>
+       <div class="col-3">Finish</div>
+</div>
+<div class="progress bg-dark borderradius progress-bar-striped progress-bar-animated" role="progressbar">
+       <div class="progress-bar bg-dark progress-bar-striped progress-bar-animated" style="width: 50%"></div>
+       <div class="progress-bar progress-bar-striped bg-info progress-bar-animated borderradius" style="width: 25%"></div>
+</div> <!-- progress bar -->
+</div> <!-- card-footer -->
 
 ';
-
 $add_order_footer = '
 </div> <!-- card -->
 </div> <!-- row -->
@@ -119,11 +150,11 @@ $add_order_step_1 = '
 
 <div class="alert alert-success borderradius">
     <div class="row m-1 text-black">
-        <div class="col-8 align-items-start justify-content-start d-flex">
-            <h2>Step 1 - Add basic info</h2>
+        <div class="col-sm-4 col-12 align-items-sm-start justify-content-sm-start align-items-center justify-content-center d-flex nowrap create-order-headline-text my-text-shadow">
+            Create Order
         </div>
-        <div class="col-4 align-items-end justify-content-end d-flex">
-            <h2>Create Order</h2>
+        <div class="col-sm-8 col-12 align-items-sm-end justify-content-sm-end align-items-center justify-content-center d-flex nowrap create-order-headline-text my-text-shadow">
+            Step 1 - Add basic info
         </div>  
     </div>
 </div>
@@ -219,7 +250,7 @@ $add_order_step_2 = '
 <div class="alert alert-success borderradius">
     <div class="row m-1 text-black">
         <div class="col-8 align-items-start justify-content-start d-flex">
-            <h2>Step 2 - Devlivery Info</h2>
+            <h2>Step 2 - Delivery Info</h2>
         </div>
         <div class="col-4 align-items-end justify-content-end d-flex">
             <h2>Create Order</h2>
@@ -366,19 +397,24 @@ $add_order_step_2 = '
 $action = $_GET['action'] ?? $_POST['action'];
 
 if($action === 'create-order-step-1') {
-echo $add_order_header;
-echo $add_order_step_1;
-echo $button_row;
-echo $progress_bar_step_1;
-echo $add_order_footer;
+    echo $add_order_header;
+    echo $add_order_step_1;
+    echo $button_row;
+    echo $progress_bar_step_1;
+    echo $add_order_footer;
 }
 else if ($action === 'create-order-step-2') {
-echo $add_order_header;
-echo $add_order_step_2;
-echo $button_row;
-echo $progress_bar_step_2;
-echo $add_order_footer;
+    echo $add_order_header;
+    echo $add_order_step_2;
+    echo $button_row;
+    echo $progress_bar_step_2;
+    echo $add_order_footer;
 }
-
-
+else if ($action === 'create-order-step-3') {
+    echo $add_order_header;
+    require_once 'create_order_items.php';
+    echo $button_row;
+    echo $progress_bar_step_3;
+    echo $add_order_footer;
+}
 ?>

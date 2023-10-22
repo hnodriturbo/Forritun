@@ -22,20 +22,17 @@
   /* color: #adb5bd; */
 }
 
-/* Passar uppá að texti sé í einni línu */
+/* Force text to not wrap */
 .nowrap {
   white-space: nowrap;
 }
-
+/* Force text not to wrap and hide overflow */
 .nowrap-overflow-hidden {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.nowrap {
-  white-space: nowrap;
-}
 
 .grey-text-white-shadow {
   color: black;
@@ -65,6 +62,8 @@
   background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
 }
 
+
+
 /* Línan */
 .my-horizontal-line {
   border-top: 3px solid rgb(124, 116, 116);
@@ -77,8 +76,11 @@
   opacity: 1;
   margin-top: 10px;
   margin-bottom: 10px;
-  
 }
+
+
+
+/* Blái text info textinn með smá skugga */
 .text-info-subtle-shadow {
   color: var(--bs-info);   /* This uses Bootstrap's text-info color */
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* This applies a subtle black shadow */
@@ -154,17 +156,49 @@
     font-size: 14px;
   }
 }
-.add-order-button {
-  font-size: 24px;
-  width: fit-content;
+
+
+/* ----- Create Order ----- */
+
+/* Title Text In Create Order */
+.create-order-headline-text {
+  display: block;
+  font-weight: 100;
+  font-size: 40px;
+}
+@media (max-width: 992px) {
+  .create-order-headline-text {
+    font-size: 26px;
+  }
+}
+@media (max-width: 576px) {
+  .create-order-headline-text {
+    font-size: 20px;
+  }
+}
+/* Go back button - Clear button - Proceed button */
+.create-order-button {
+  font-size: 20px;
+  /* width: fit-content; */
   height: 45px;
 }
 @media (max-width: 1200px) {
-  .add-order-button {
+  .create-order-button {
     font-size: 16px;
   }
 }
+.create-order-button-logo {
+  font-size: 22px;
 
+}
+@media (max-width: 576px) {
+  .create-order-sm-size-buttons {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 
 .subtle-text-border {
   text-shadow: 

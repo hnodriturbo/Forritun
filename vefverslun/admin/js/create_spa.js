@@ -30,11 +30,15 @@ $(function() {
 
 /* ----------------------------------------------------------------------------- */
 /* -------- 1. Function for loading the content and submitting the form -------- */
-
+let currentIndex = 0
 // Function for loading the main content and use ajax to POST to my PHP script
 function loadContent(action, repopulate = false,  fromPopstate = false) {
     // Debug statement
     console.log("loadContent called with action: " + action + ":: fromPopstate : " + fromPopstate);
+
+    /* storeActiveStepInSession(action); */
+    const currentStepNumber = parseInt(sessionStorage.getItem("Active-Step-Number"))
+    console.log("loadContent stepnumber from session: ", sessionStorage.getItem("Active-Step-Number"))
 
     // Start the ajax script and POST the action, formSubmit and formData
     $.ajax({ 
@@ -43,6 +47,11 @@ function loadContent(action, repopulate = false,  fromPopstate = false) {
         data: { action: action },
         // On success execute this code
         success: function(response) {
+            if(!fromPopstate) { // If not popstate event then push the new action to the url
+                // Every time a page loads i set the active step number that was loaded in sessionStorage
+                storeActiveStepInSession(action);
+                window.history.pushState({ action: action }, '', `create_index.php?action=${action}`);
+            } 
             // Fade out main content container
             $('#main-content-container').fadeOut(300, function() {
                 // and fade in the servers response
@@ -62,9 +71,7 @@ function loadContent(action, repopulate = false,  fromPopstate = false) {
                 // On focus actively validate the inputs
                 activeInputFieldsValidation();
             });
-            if(!fromPopstate) { // If not popstate event then push the new action to the url
-                window.history.pushState({ action: action }, '', `create_index.php?action=${action}`);
-            } 
+
         }
     });
 }
@@ -85,23 +92,34 @@ function updateButtons(action) {
         // If action is create-order-step-1 update buttons values
         case 'create-order-step-1':
             // Proceed button
-            $('#create-order-proceed span').text('Proceed to Step 2');
+            $('#create-order-proceed span').text('Proceed to step 2');
             $('#create-order-proceed').attr('data-action', 'create-order-step-2');
             $('#create-order-proceed').attr('data-formSubmit', 'create-order-step-1');
             // Go back button
-            $('#create-order-go-back span').text('Go Back To Index');
+            $('#create-order-go-back span').text('Go back to index');
             $('#create-order-go-back').attr('data-action', 'go-to-index');
             break;
         // If action is create-order-step-2 update buttons values
         case 'create-order-step-2':                
             // Create order proceed button text and attributes
-            $('#create-order-proceed span').text('Proceed to Step 3');
+            $('#create-order-proceed span').text('Proceed to step 3');
             $('#create-order-proceed').attr('data-action', 'create-order-step-3');
             $('#create-order-proceed').attr('data-formSubmit', 'create-order-step-2');
             // Create order go back button text and attributes
-            $('#create-order-go-back span').text('Go Back To Step 1')
+            $('#create-order-go-back span').text('Go back to step 1')
             $('#create-order-go-back').attr('data-action', 'create-order-step-1');
             break;
+        // If action is create-order-step-3 update buttons values
+        case 'create-order-step-3':
+            // Proceed button
+            $('#create-order-proceed span').text('Proceed to step 4');
+            $('#create-order-proceed').attr('data-action', 'create-order-step-4');
+            $('#create-order-proceed').attr('data-formSubmit', 'create-order-step-3');
+            // Go back button
+            $('#create-order-go-back span').text('Go back to step 2');
+            $('#create-order-go-back').attr('data-action', 'create-order-step-2');
+            break;
+
     }
 }
   /* --------------- ----- 2. The updateButtons function ----- --------------- */
@@ -172,33 +190,74 @@ window.addEventListener('popstate', function(event) {
     // Check if 'state' property exists in the event object
     if (event.state) {
         // Get 'action' value from 'state' property
-        let action = event.state.action;
-        // Load content based on the 'action' value and indicate popstate event
-        loadContent(action, true, true);
+        let action = event.state && event.state.action;
+
+        /* --------------------------- */
+        if (action && action.startsWith("create-order-step-")) {
+            const attemptedStepNumber = parseInt(action.replace("create-order-step-", ""));
+            const currentStepNumber = parseInt(sessionStorage.getItem("Active-Step-Number"));
+
+            console.log("attempting to open step number: ", attemptedStepNumber);
+            console.log("popstate currentStepNumber from session: ", currentStepNumber);
+
+            // If user tries to open a step number higher then open with forward button (popstate)
+            if (attemptedStepNumber > currentStepNumber) {
+                // NÆS ÞETTA VIRKAR ! STOPPAR VIÐKOMANDI Í AÐ FARA ÁFRAM
+                // GERA VALIDATION Á FORMINU HÉRNA OG VIRKJA ÖLL FUNCTIONIN
+                event.preventDefault(); // Prevent the forward navigation
+                alert('Please complete the current step before proceeding.');
+                history.back()
+                return false;
+            } else {
+                storeActiveStepInSession(action);
+                // Handle the normal behaviour for the popstate event
+                // Load content based on the 'action' value and indicate popstate event
+                loadContent(action, true, true);
+            }
+        
+        }
+
+        /* --------------------------- */
+
     } else {
         // No 'state' property, load default or index content
         loadContent('go-to-index', false, true);
     }
 });
-
-
+function storeActiveStepInSession(action) {
+    if (action.startsWith("create-order-step-")) {
+        actionStepNumberForSessionStorage = parseInt(action.replace("create-order-step-", ""));
+        sessionStorage.setItem("Active-Step-Number", actionStepNumberForSessionStorage);
+    }
+}
 
 // On new page load (Refresh) get the action from the url 
 // To repopulate them with the existing data
 window.addEventListener('load', function() {
     const action = new URL(window.location).searchParams.get("action");
     if (action) {
-        console.log("Page loaded from refresh with action:", action);
-        // Repopulate the fields 
+        storeActiveStepInSession(action);
+
+        // Execute the necessary functions after a page refresh 
+        updateButtons(action)
         repopulateFields(action);
         activeInputFieldsValidation();
         clearButtonFunction();
+
+        console.log("Page loaded from refresh with action:", action);
+        /* loadContent(action, true, true) */
+
+        
     } else {
         console.log("No action specified in the URL.");
         // Handle cases where there is no action parameter in the URL if needed
     }
 });
-
+/* 
+        repopulateFields(action);
+        activeInputFieldsValidation();
+        clearButtonFunction();
+         */
   /* ----- --- 4. Refresh, back, forward buttons (popstate) event --- ----- */
 /* -------------------------------------------------------------------------- */
 
@@ -296,7 +355,7 @@ function repopulateFields(action) {
 
 // This handles the CLEAR button click
 function clearButtonFunction() {
-    $('.clear-form-button').click(function() {
+    $('.clear-form-button-js').click(function() {
         let form = $(this).closest('form');
         if(form.length) {
             form[0].reset();
