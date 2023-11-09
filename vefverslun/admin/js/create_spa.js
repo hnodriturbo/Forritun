@@ -28,6 +28,164 @@
 /* When document is ready this function executes */
 $(function() {
 
+
+    function handleProductAddition(productId, quantity) {
+        console.log("Sending AJAX request for product:", productId); // Add this line
+        $.ajax({
+            url: 'create_fetch_products.php',
+            type: 'POST',
+            data: { product_id: productId },
+            dataType: 'json',
+            success: function(product) {
+                console.log("Fetched product:", product); // Modify this line
+                let addedProducts = JSON.parse(sessionStorage.getItem('addedProducts')) || [];
+                product.quantity = quantity; // Add quantity to product object
+                addedProducts.push(product);
+                sessionStorage.setItem('addedProducts', JSON.stringify(addedProducts));
+                displayAddedProducts(); // Moved inside success callback
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error:", error); // Add this line
+            }
+        });
+    }
+    
+    
+    
+
+
+// Function to display added products
+function displayAddedProducts() {
+    const addedProducts = JSON.parse(sessionStorage.getItem('addedProducts')) || [];
+    let addedProductsHtml = '';
+
+    addedProducts.forEach(product => {
+        // For each added product, create HTML markup.
+        addedProductsHtml += `
+            <div class="added-product row">
+            <div class="col-2">
+                <img src="../img/products/${product.image}" alt="${product.name}" class="img-fluid">
+            </div>
+            <div class="col-8">
+                <h4>${product.name}</h4>
+                <p>${product.product_id}</p>
+                <p>${product.price} ISK</p>
+            </div>
+            <div class="col-2">
+                <div class="row">
+                <button class="btn btn-danger remove-product-btn" data-product-id="${product.product_id}">Remove</button>
+                </div>
+            </div>
+        </div>
+        `;
+    });
+
+    // Update the container with the new HTML
+    // First hide the container, then update HTML, and finally apply fade in effect
+    $('#added-products-window-container').fadeOut(300, function() {
+        $(this).html(addedProductsHtml).fadeIn(300);
+    });
+}
+
+// Use event delegation for remove buttons
+$('#added-products-window-container').on('click', '.remove-product-btn', function() {
+    const productIdToRemove = $(this).data('product-id');
+    console.log("Product ID to remove:", productIdToRemove); // Log for debugging
+    removeProduct(productIdToRemove);
+    displayAddedProducts(); // Refresh display after removal
+});
+
+
+// Function to remove a product from the 'addedProducts' array in session storage
+// Function to remove a product
+function removeProduct(product_id) {
+    let addedProducts = JSON.parse(sessionStorage.getItem('addedProducts')) || [];
+    console.log("Before removal:", addedProducts);
+    addedProducts = addedProducts.filter(product => product.product_id !== product_id);
+    console.log("After removal:", addedProducts);
+    sessionStorage.setItem('addedProducts', JSON.stringify(addedProducts));
+    displayAddedProducts(); // Refresh display after removal
+}
+
+
+
+
+
+
+    // This retrives the product id and quantity and console logs it - WORKING
+    $(document).on('click', '.add-to-order-btn', function() {
+        const productId = $(this).data('product-id');
+        const quantityInput = $(this).closest('.product-container').find('input[name="quantity"]').val();
+        let quantity = parseInt(quantityInput) || 0; // Corrected line
+
+        if (quantity > 0) {
+            handleProductAddition(productId, quantity);
+            console.log("Product ID:", productId, "Quantity:", quantity);
+        }
+        // Add logic to handle adding the product to order
+        // For example, you might want to store the product ID and quantity in session storage or perform another action
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $('#category-dropdown').on('change', function() {
+        console.log("Dropdown changed"); // Add this line
+
+        const categoryId = $(this).val();
+
+        $.ajax({
+            url: 'create_fetch_products.php',
+            type: 'POST',
+            data: { category_id: categoryId },
+            dataType: 'json',
+            success: function(products) {
+                let productHtml = '';
+                products.forEach(product => {
+                    productHtml += `
+                        <div class="product-container row">
+                            <div class="col-2">
+                                <img src="../img/products/${product.image}" alt="${product.name}" class="img-fluid">
+                            </div>
+                            <div class="col-8">
+                                <h4>${product.name}</h4>
+                                <p>${product.description}</p>
+                                <p>${product.price} ISK</p>
+                            </div>
+                            <div class="col-2">
+                                <div class="row">
+                                Quantity :<input class="form-control bg-dark-subtle" type="number" name="quantity" min="1" aria-label="default input example">
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <button data-product-id="${product.product_id}" class="btn btn-secondary add-to-order-btn">Add to Order</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                $('#product-window-container').fadeOut(300, function() {
+                    $(this).html(productHtml).fadeIn(300);
+                })
+                // $('#product-window-container').html(productHtml);
+            }
+        });
+    });
+
+
+    
 /* ----------------------------------------------------------------------------- */
 /* -------- 1. Function for loading the content and submitting the form -------- */
 let currentIndex = 0
@@ -70,6 +228,8 @@ function loadContent(action, repopulate = false,  fromPopstate = false) {
                 updateButtons(action);
                 // On focus actively validate the inputs
                 activeInputFieldsValidation();
+                // If there are any products in the session display them
+                displayAddedProducts();
             });
 
         }
@@ -174,6 +334,7 @@ function handleButtonClick(event) {
 // On Proceed or Go Back button click execute the handleButtonClick function
 $(document).off('click', '#create-order-proceed, #create-order-go-back').on('click', '#create-order-proceed, #create-order-go-back', handleButtonClick);
 
+
  /* --------- ---- 3. Function that handles the button click ---- ---------- */
 /* -------------------------------------------------------------------------- */
 
@@ -243,7 +404,8 @@ window.addEventListener('load', function() {
         repopulateFields(action);
         activeInputFieldsValidation();
         clearButtonFunction();
-
+        displayAddedProducts();
+        printSessionData();
         console.log("Page loaded from refresh with action:", action);
         /* loadContent(action, true, true) */
 
@@ -280,6 +442,10 @@ function formToObject(formElement) {
             formDataObject[element.name] = element.value;
         }
     }
+    // Added products
+    const addedProducts = JSON.parse(sessionStorage.getItem('addedProducts')) || [];
+    formDataObject['addedProducts'] = addedProducts
+
     return formDataObject;
 }
 
@@ -302,6 +468,21 @@ function getFormDataFromSession(action) {
 function removeFormDataFromSession(action) {
     sessionStorage.removeItem(action);
 }
+
+// Handle product addition function
+/* function handleProductAddition(productId, quantity) {
+    let addedProducts = JSON.parse(sessionStorage.getItem('addedProducts')) || []
+    
+    let existingProduct = addedProducts.find(p => p.productId === productId);
+    if(existingProduct) {
+        existingProduct.quantity += quantity;
+    } else {
+        addedProducts.push({ productId, quantity });
+    }
+
+    sessionStorage.setItem('addedProducts', JSON.stringify(addedProducts));
+} */
+
 
 // Function to print and console log the session data for learning purposes
 function printSessionData() {

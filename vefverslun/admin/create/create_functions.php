@@ -4,8 +4,12 @@
   /* --------------------------------------------------- */
  /* ---------- MY FUNCTIONS FOR ADDING STUFF ------------ */
 /* ------------------------------------------------------- */
+
+require_once '../database/database.php';
+
+
 function addToOrdersTable($order_info) {
-    global $conn; // Assuming $conn is a mysqli connection object
+    global $conn; 
 
     // Ensure all keys are set, set to NULL otherwise
     $keys = ['user_id', 'firstname', 'lastname', 'email', 'address', 'address2', 'postalcode', 'city', 'state', 'country', 'final_price', 'order_status'];
@@ -34,6 +38,49 @@ function addToOrdersTable($order_info) {
     return $executed;
 }
 
+function getCategories() {
+    global $conn;
+    $sql = "SELECT * FROM categories";
+    $result = mysqli_query($conn, $sql);
+
+    $categories = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $categories[] = $row;
+    }
+    return $categories;
+
+}
+function fetchProductsByCategory($category_id) {
+    global $conn;
+    
+    $sql = "SELECT * FROM products WHERE category_id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, 'i', $category_id);
+    mysqli_stmt_execute($stmt);
+    
+    $result = mysqli_stmt_get_result($stmt);
+    $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    
+    mysqli_stmt_close($stmt);
+    
+    return $products;
+}
+function fetchProductById($productId) {
+    global $conn;
+
+    // SQL query to fetch product by ID
+    $sql = "SELECT * FROM products WHERE product_id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, 'i', $productId);
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+    $product = mysqli_fetch_assoc($result);
+
+    mysqli_stmt_close($stmt);
+
+    return $product;
+}
 
 
 /************************************************************

@@ -280,12 +280,35 @@
   pointer-events: none;
   border-radius: 40px;  /* Make sure interactions like clicking go through the overlay */
 }
-
+.img-fluid {
+  height: 100px;
+  width: 100px;
+}
 
 /*--------------------------------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------- */
+.scrollable-product-window {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+.product {
+  width: 500px;
+  height: 500px;
+}
+.product-container {
+  padding: 15px 0; /* Space out each product */
+  border-bottom: 1px solid #eee; /* Optional line to separate products visually */
+}
 
+.product-container img {
+  max-width: 100%; /* Ensure images don't overflow their container */
+  display: block; /* Remove any unwanted space below the image */
+  margin: 0 auto; /* Center the image horizontally if it's smaller than the container */
+}
 
+.product-container h4 {
+  margin-top: 0; /* Remove default top margin */
+}
 
 
 

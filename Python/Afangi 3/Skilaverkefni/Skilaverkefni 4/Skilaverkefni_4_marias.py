@@ -88,11 +88,12 @@ def bua_til_spil():
 """ ----------------------------------------------------------------------------- """
 """ ---------- Checka á sjö - Fallið gengur bæði fyrir tölvu og mann ------------ """
 """ ----------------------------------------------------------------------------- """
-def check_for_7(spilahendi):
+def check_for_7(spilahendi, spilastokkur, valid_spil=None):
     global tromp_spil
     global tromp_tegund
-    for spil in spilahendi:
-        if spil.spilanumer == 7 and spil.spilategund == tromp_tegund:
+    
+    if valid_spil:
+        if valid_spil.spilanumer == 7 and valid_spil.spilategund == tromp_tegund:
             # Tek spilið af hendinni
             spilahendi.remove(spil)
             # Tek upp spilið og set á hendi
@@ -104,7 +105,22 @@ def check_for_7(spilahendi):
 
             # Skila fallinu True þar sem skipt hefur verið um spil
             return True
+        
+    else:
+        for spil in spilahendi:
+            if spil.spilanumer == 7 and spil.spilategund == tromp_tegund:
+                # Tek spilið af hendinni
+                spilahendi.remove(spil)
+                # Tek upp spilið og set á hendi
+                spilahendi.append(tromp_spil)
+                # Set spilið aftur í stokkinn
+                spilastokkur.append(spil)
+                # Geri spilið að hinu nýja spili sem snýr upp (tromp spilið)
+                tromp_spil = spil
 
+                # Skila fallinu True þar sem skipt hefur verið um spil
+                return True
+        
     # Skila fallinu false ef gekk ekki að skipta um spil
     return False
     
@@ -173,11 +189,11 @@ def check_samsetningar(spilahendi, spilari):
 
 
 # --------- Tölvan gerir fallið og logicið fyrir hvaða spil skal spila -------- #
-def tolva_gerir(spilahendi_tolvu, spil_uti=None):
+def tolva_gerir(spilahendi_tolvu, spilastokkur, spil_uti=None):
     global tromp_spil
     global tromp_tegund
     # Byrja á að athuga hvort tölvan sé með sjöu af tromp sortinni
-    success_skipta_sjöu = check_for_7(spilahendi_tolvu)
+    success_skipta_sjöu = check_for_7(spilahendi_tolvu, spilastokkur)
     if success_skipta_sjöu:
         print(f"Tölvan skipti út {tromp_spil.spilanafn} fyrir {spilahendi_tolvu[-1].spilanafn}")
     else:
@@ -247,7 +263,7 @@ def tolva_gerir(spilahendi_tolvu, spil_uti=None):
 # --------------------------------------------------------------------#
 ### ---------------------- Þegar maður gerir ---------------------- ###
 # --------------------------------------------------------------------#   
-def madur_gerir(spilahendi_manns, spil_uti=None):
+def madur_gerir(spilahendi_manns, spilastokkur, spil_uti=None):
     
     if spil_uti is None:
         print(f"\nÞú átt að setja út fyrst.")
@@ -285,10 +301,10 @@ def madur_gerir(spilahendi_manns, spil_uti=None):
             valid_spil_index = input("\nVeldu spilið sem þú ætlar að skipta út (verður að vera sjöa af trompi): ")
             if valid_spil_index.isdigit() and 1 <= int(valid_spil_index) <= len(spilahendi_manns):
                 valid_spil = spilahendi_manns[int(valid_spil_index)-1]
-                if check_for_7(valid_spil):
+                if check_for_7(spilahendi_manns, spilastokkur, valid_spil):
                     print("\nÞú hefur skipt út tromp sjöunni.")
                 else:
-                    print("\nSkipti ekki tókst. Gæti verið að þú hafir ekki sjöundann í tromp tegundinni á hendinni þinni eða skipti hefur þegar verið um honum.")
+                    print("\nÞað tókst ekki að skipta út spilinu. Gæti verið að þetta hafi ekki verið rétt spil?")
             else:
                 print("\nVerður að velja spil sem er á hendinni.")
                 continue
@@ -357,15 +373,15 @@ def spila_umferd(spilahendi_manns, spilahendi_tolvu, spilastokkur, sigurvegari, 
     print(f"\nTromp spilið sem snýr upp er: {tromp_spil.spilanafn}")
     
     if setur_fyrst_ut == "Tölva":
-        spil_tolvu = tolva_gerir(spilahendi_tolvu)
+        spil_tolvu = tolva_gerir(spilahendi_tolvu, spilastokkur)
         print(f"\nTölva setur út: {spil_tolvu.spilanafn}")
-        spil_manns = madur_gerir(spilahendi_manns, spil_uti=spil_tolvu)
+        spil_manns = madur_gerir(spilahendi_manns, spilastokkur, spil_uti=spil_tolvu)
         print(f"\nNotandi setur út : {spil_manns.spilanafn}")
 
     else:
-        spil_manns = madur_gerir(spilahendi_manns)
+        spil_manns = madur_gerir(spilahendi_manns, spilastokkur)
         print(f"\nNotandi setur út : {spil_manns.spilanafn}")
-        spil_tolvu = tolva_gerir(spilahendi_tolvu, spil_uti=spil_manns)
+        spil_tolvu = tolva_gerir(spilahendi_tolvu,spilastokkur, spil_uti=spil_manns)
         print(f"Tölva setur út: {spil_tolvu.spilanafn}")
     
     # Sjá hver vinnur umferðina

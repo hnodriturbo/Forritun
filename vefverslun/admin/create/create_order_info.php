@@ -30,11 +30,11 @@ $button_row =
     <button id="create-order-proceed" 
             type="submit"
             class="nowrap btn btn-lg btn-outline-success toggle-btn-outline-secondary-box-shadow create-order-button d-flex align-items-center create-order-sm-size-buttons"
-            data-action="' . $proceedButtonAttribute . '"
-            data-formSubmit="' . $formSubmitValue . '"
+            data-action=""
+            data-formSubmit=""
     >
 
-        <span>' . $proceedButtonText . '</span> 
+        <span></span> 
         <i class="bi bi-arrow-right-circle create-order-button-logo" style="margin-left: 20px;"></i>
     </button> 
     </form>
@@ -62,11 +62,11 @@ $button_row =
     <button id="create-order-go-back"
             type="button" 
             class="nowrap btn btn-lg btn-outline-danger toggle-btn-outline-danger-box-shadow create-order-button d-flex align-items-center create-order-sm-size-buttons"
-            data-action="' . $goBackButtonAttribute . '"
+            data-action=""
     >
 
             <i class="bi bi-arrow-left-circle create-order-button-logo" style="margin-right: 20px;"></i>
-            <span>' . $goBackButtonText . '</span>
+            <span></span>
 
     </button>
 </div>
@@ -119,20 +119,18 @@ $progress_bar_step_2 = '
 </div> <!-- card-footer -->
 ';
 $progress_bar_step_3 = '
-
 <div class="card-footer">
-<div class="row align-items-center center justify-content-center d-flex whitetext" style="font-size: 24px;">
-       <div class="col-3">Step 1</div>
-       <div class="col-3">Step 2</div>
-       <div class="col-3">Step 3</div>
-       <div class="col-3">Finish</div>
-</div>
-<div class="progress bg-dark borderradius progress-bar-striped progress-bar-animated" role="progressbar">
-       <div class="progress-bar bg-dark progress-bar-striped progress-bar-animated" style="width: 50%"></div>
-       <div class="progress-bar progress-bar-striped bg-info progress-bar-animated borderradius" style="width: 25%"></div>
-</div> <!-- progress bar -->
+    <div class="row align-items-center center justify-content-center d-flex whitetext" style="font-size: 24px;">
+        <div class="col-3">Step 1</div>
+        <div class="col-3">Step 2</div>
+        <div class="col-3">Step 3</div>
+        <div class="col-3">Finish</div>
+    </div>
+    <div class="progress bg-dark borderradius progress-bar-striped progress-bar-animated" role="progressbar">
+        <div class="progress-bar bg-dark progress-bar-striped progress-bar-animated" style="width: 50%"></div>
+        <div class="progress-bar progress-bar-striped bg-info progress-bar-animated borderradius" style="width: 25%"></div>
+    </div> <!-- progress bar -->
 </div> <!-- card-footer -->
-
 ';
 $add_order_footer = '
 </div> <!-- card -->
@@ -142,7 +140,13 @@ $add_order_footer = '
 ';
 
 
+$add_order_display_added_products = '
+<h1>Added products :</h1> 
+<div id="added-products-window-container" class="text-white">
+             
+</div>     
 
+';
 
 $add_order_step_1 = '
 <!-- ----------- Here starts the card body ----------- -->
@@ -394,6 +398,9 @@ $add_order_step_2 = '
 
 ';
 
+
+
+/* 
 $action = $_GET['action'] ?? $_POST['action'];
 
 if($action === 'create-order-step-1') {
@@ -416,5 +423,5 @@ else if ($action === 'create-order-step-3') {
     echo $button_row;
     echo $progress_bar_step_3;
     echo $add_order_footer;
-}
+} */
 ?>

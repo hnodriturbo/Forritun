@@ -36,12 +36,20 @@ if (!$is_ajax) {
     include_once "$base_url" . "topnavbar.php";
 }
 
+// Include the file that defines the content variables
+include_once 'create_order_info.php'; // <-- Add this line
+include_once 'create_functions.php';
+include_once "$base_url" . "database/database.php";
 
-$goBackButtonAttribute = '';
-$goBackButtonText = '';
-$proceedButtonAttribute = '';
-$proceedButtonText = '';
+
+
+
+
+
+// Determine content to display based on the action
+$content_to_display = [];
 $formSubmitValue = '';
+
 $action = $_GET['action'] ?? $_POST['action'] ?? "";
 
 if (!$is_ajax) {
@@ -54,58 +62,7 @@ if (!$is_ajax && $_SERVER['REQUEST_METHOD'] != 'GET') {
     include 'create_menu.php';
 }
 
-/* if (isset($action)) {
-    if ($action == '')
-} */
 
-/* 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    switch ($action) {
-        case 'go-to-index':
-            include 'create_menu.php';
-            break;
-        default:
-
-        
-    }
-} */
-/*
-        case 'create-order-step-1':
-            $goBackButtonAttribute = 'go-to-index';
-            $goBackButtonText = 'Go Back To Index';
-            $proceedButtonText = 'Proceed To Step 2';
-            $proceedButtonAttribute = 'create-order-step-2';
-            $formSubmitValue = 'create-order-step-1';
-
-
-            include('create_order_info.php');
-
-            break;
-        case 'create-order-step-2':
-            $goBackButtonAttribute = 'create-order-step-1';
-            $goBackButtonText = 'Go Back To Step 1';
-            $proceedButtonText = 'Proceed To Step 3';
-            $proceedButtonAttribute = 'create-order-step-3';
-            $formSubmitValue = 'create-order-step-2';
-            include 'create_order_info.php';
-            break;
-
-        case 'create-order-step-3':
-            $goBackButtonAttribute = 'create-order-step-2';
-            $goBackButtonText = 'Go Back To Step 2';
-            $proceedButtonText = 'Proceed To Step 4';
-            $proceedButtonAttribute = 'create-order-step-4';
-            $formSubmitValue = 'create-order-step-3';
-            include 'create_order_items.php';
-            break;
-            
-        default:
-            if (!$is_ajax) {
-                include 'create_menu.php';
-            }
-        }
-} 
- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') {
 
     // Execute code based on the retrived $action variable
@@ -115,22 +72,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         // ----- ----- create-order-step-1 ----- ----- //
 
         case 'create-order-step-1':
-            include('create_order_info.php');
+
+            $content_to_display = [$add_order_header, $add_order_step_1, $button_row, $progress_bar_step_1, $add_order_footer];
+
             break;
         
         // ------------------ STEP 2 ----------------- //
         // ----- ----- create-order-step-2 ----- ----- //
 
         case 'create-order-step-2':
-            include('create_order_info.php');
+            $content_to_display = [$add_order_header, $add_order_step_2, $button_row, $progress_bar_step_2, $add_order_footer];
+
             break;
 
         // ------------------ STEP 3 ----------------- //
         // ----- ----- create-order-step-3 ----- ----- //    
         case 'create-order-step-3':
-
-            // Include the create_order_items view page
-            include('create_order_info.php');
+            ob_start(); // Start output buffering
+            require_once 'create_order_items.php';
+            $create_order_items_content = ob_get_clean(); // Get the content from the buffer
+            $content_to_display = [$add_order_header, $create_order_items_content, $button_row, $add_order_display_added_products, $progress_bar_step_3, $add_order_footer];
             break;
 
  
@@ -151,6 +112,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
             include 'create_menu.php';
             break;
     }
+    foreach ($content_to_display as $content) {
+        echo $content;
+    }
 }
 
 
@@ -160,6 +124,8 @@ if (!$is_ajax) {
     echo '</div>
     </div> <!-- col-lg-10 col-12 -->';
 }
+
+
 
 
 
