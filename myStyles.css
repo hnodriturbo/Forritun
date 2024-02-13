@@ -1,0 +1,359 @@
+/* ########## Hreiðar Pétursson ########## */
+/*  ######## Javascript Áfanginn ########  */
+/*   ######### Skilaverkefni 4 #########   */
+/*    ######### Product List ##########    */
+/*     #######   Febrúar 2024   ######     */
+
+
+
+/* <!-- By the way - I use alot of comments in my codings --> */
+/* <!-- And I always use the English language. --> */
+
+
+
+
+/* ----------------------------------------------------- */
+/* ----------- Global styles & Modifications ----------- */
+/* ----------------------------------------------------- */
+
+:root {
+    --myText-Shadow: 2px 2px 4px rgba(57, 55, 56, 0.5);
+    --myText-Shadoww: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    --text-glow: 2px 2px 4px rgb(39, 42, 45, 1);
+    --elegant-grey-shadoww:  -0.3px 0.3px 0 rgba(150, 150, 150, 0.8),  
+                            0.6px -0.3px 0 rgba(150, 150, 150, 0.8),
+                            -0.3px 0.3px 0 rgba(150, 150, 150, 0.8),
+                             0.6px 0.3px 0 rgba(150, 150, 150, 0.8); /* Soft grey shadow */
+    --elegant-grey-shadow:  -0.3px 0.3px 1px rgba(34, 32, 32, 0.8),  
+                            0.6px -0.3px 1px rgba(34, 32, 32, 0.8),
+                            -0.3px 0.3px 1px rgba(34, 32, 32, 0.8),
+                             0.6px 0.3px 1px rgba(34, 32, 32, 0.8); /* Soft grey shadow */
+
+                             
+    --soft-white-shadow:    -0.3px 0.3px 1px rgba(255, 255, 255, 0.8),  
+                             0.6px -0.3px 1px rgba(255, 255, 255, 0.8),
+                            -0.3px 0.3px 1px rgba(255, 255, 255, 0.8),
+                             0.6px 0.3px 1px rgba(255, 255, 255, 0.8);
+    
+    --soft-white-shadow-2:    -0.3px 0.3px 3px rgba(255, 255, 255, 0.2),  
+                             0.6px -0.3px 3px rgba(255, 255, 255, 0.2),
+                            -0.3px 0.3px 3px rgba(255, 255, 255, 0.2),
+                             0.6px 0.3px 3px rgba(255, 255, 255, 0.2);
+
+
+                            }
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+/*     text-shadow: 2px 2px 4px rgba(108, 117, 125, 1);
+ */}
+
+/* Style of h1 */
+h1 {
+    /* color: #495057; */
+    font-size: min(max(4vw, 6vw), 8vw); /* min(max(16px, 1.6vw), 18px) */
+    text-shadow: var(--soft-white-shadow-2);
+}
+
+hr {
+    width: 90%;
+}
+
+/* ----------------------------------------------------- */
+/* -------------------  Content CSS  ------------------- */
+/* ----------------------------------------------------- */
+
+/* Body and HTML styling */
+body, html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #343a40;
+    /* color: #6c7a89;  */
+    color: #a4afb9;  
+    text-shadow: var(--elegant-grey-shadow);  
+}
+
+
+/* Container Class Styles */
+.contentContainer {
+
+    /* Grid settings */
+    display: flex; /* Flexbox as described in the project description */
+    flex-direction: column; /* Column stacked */
+
+    /* Border and shadow */
+    border: 1px solid #212529; /* Darker gray for the border */
+    border-radius: 15px;
+    box-shadow: 1px 2px 5px 5px rgba(0, 0, 0, 0.1); /* better lookings like this the box */
+
+    /* Width & Height */
+    width: 100vw;
+    max-width: 100%; /* Ensures not exceeding viewport width */
+    height: 100%;
+
+    /* Margin & Padding & Align */
+    margin: 0 auto;
+    padding: 20px;
+    align-items: center; /* Center items */
+}
+
+
+
+
+
+
+/* ----------------------------------------------------- */
+/* ------------------ Add Product Row ------------------ */
+/* ----------------------------------------------------- */
+
+
+/* Add Product Row Styles */
+.addProductRow {
+    display: flex;
+    padding: 10px;
+    width: 100%; 
+    padding-left: 2px;
+}
+
+
+/*  ----- Product Name & Price ----- */
+
+/* Add Product Name Column */
+.addProductName {
+    flex: 4; 
+    margin-right: 5px;
+}
+
+/* Add Product Price Column */
+.addProductPrice {
+    flex: 2; 
+    margin-right: 5px;
+}
+
+/* Product & Price label CSS */
+.productNameLabel {
+    font-size: min(max(16px, 2vw), 24px); /* min(max(16px, 1.6vw), 18px) */
+    white-space: nowrap;
+    text-shadow: var(--soft-white-shadow-2);
+}
+.productPriceLabel {
+    font-size: min(max(16px, 2vw), 24px); /* min(max(16px, 1.6vw), 18px) */
+    text-shadow: var(--soft-white-shadow-2);
+}
+
+
+
+
+/* ----- Product and Price inputs settings and styles ----- */
+
+.addProductRow input[type="text"],
+.addProductRow input[type="number"] {
+    padding: 4px;
+    border: 1px solid rgba(177, 177, 177, 0.5);;
+    border-radius: 10px;
+    font-size: min(max(16px, 1.6vw), 18px); 
+    background-color: #fff;
+    color: #495057;
+    opacity: 0.5;
+    width: 100%;
+}
+.addProductRow input[type="text"]:focus,
+.addProductRow input[type="number"]:focus {
+    outline: 2px solid rgba(177, 177, 177, 0.5);
+    opacity: 0.5;
+}
+/* Found this online to disable the up and down arrows inside the number input
+   that appear when the input is on focus */
+.addProductRow input[type="number"]::-webkit-inner-spin-button,
+.addProductRow input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* ----- Add Product Button Styles ----- */
+
+.addProductButton {
+    flex: 2;
+    display: flex;
+    align-items: end; 
+}
+
+#addProductButton {
+    display: flex;
+    width: 100%;
+    height: 30px;
+
+    font-size: min(max(16px, 1.6vw), 18px);
+    color: #6c7a89;
+    opacity: 0.4;
+    
+    border: 2px solid rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 4px rgba(177, 177, 177, 0.5); /* Glowing effect to the button */
+    
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bold;
+    text-shadow: var(--elegant-grey-shadow);
+}
+
+
+
+
+/* ------------------------------------------------------- */
+/* ------------------ Error Message CSS ------------------ */
+/* ------------------------------------------------------- */
+
+
+#errorMessage {
+    display: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+
+    color: #292525; 
+    background-color: #944e4e;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    opacity: 0.8;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* ------------------------------------------------------ */
+/* ------------------ Product List Row ------------------ */
+/* ------------------------------------------------------ */
+
+#productList {
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    gap: 5px;
+}
+
+
+.productItem {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+
+    border: 1px solid #212529;
+    background-color: #fff;
+    /* color: #495057; */
+    font-size: min(max(16px, 1.6vw), 18px);
+    
+    opacity: 0.5;
+    border-radius: 15px;
+
+    /* Align Settings*/
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+
+/* Product Name Column */
+.productNameCol {
+    flex: 4; 
+    text-align: left; /* Text align left for product name */
+    
+}
+
+/* Product Price Column */
+.productPriceCol {
+    flex: 2; 
+    text-align: center; /* Text align right for product price */
+}
+
+.deleteButtonCol {
+    flex: 2;
+    display: flex;
+    justify-content: center; /* Center the delete button within its column */
+}
+
+.deleteButton {
+    width: 100%;
+    padding: 6px;
+    font-size: min(max(16px, 1.6vw), 18px);
+    color: #000000; 
+    text-shadow: var(--soft-white-shadow); /* My elegant grey shadow */
+    background-color: #cc2121;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    opacity: 0.8;
+    font-weight: bold;
+} 
+
+/* ----------------------------------------------------- */
+/* ------------------ Total Price Row ------------------ */
+/* ----------------------------------------------------- */
+
+.totalPriceRow {
+    display: flex;
+    margin-top: 8px;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    
+
+    background-color: #2b2b2b;
+    /*   */
+    border-radius: 15px;
+
+    font-size: min(max(20px, 1.6vw), 24px);
+
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 1;
+    
+    
+}
+
+
+#totalPrice {
+    color: #fff;
+    opacity: 0.7;
+    font-weight: bold;
+}
+
+/* ------------------------------------------------------ */
+/* -------------------- For Keeping  -------------------- */
+/* ------------------------------------------------------ */
+
+
+/* This distribute space evenly between divs */
+/* 
+.addProductRow > div {
+    flex: 1; 
+}
+ */
+
+     /* Not part of the project description so i commented it out */
+    /* Transition for the background, border-color and color on hover */
+/*     transition: background-color 0.2s, border-color 0.2s, color 0.2s; */
+/* 
+.totalPriceText {
+    text-shadow: -1px -1px 0 #000,  
+                  1px -1px 0 #000,
+                 -1px 1px 0 #000,
+                  1px 1px 0 #000; 
+    color: white; 
+}
+.totalPriceText {
+    color: #6c757d; 
+    text-shadow: 2px 2px 4px rgba(108, 117, 125, 0.5);
+}
+
+ */
