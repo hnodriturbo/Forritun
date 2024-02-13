@@ -1,0 +1,21 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to your default branch if different
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      
+    - name: Build and deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        branch: gh-pages  # The branch the action should deploy to.
+        folder: 'Afangi-4-Javascript/Verkefni-4-Product-List'  # The folder you want to deploy.
+        token: ${{ secrets.GITHUB_TOKEN }}  # Uses the built-in GITHUB_TOKEN for authentication.
