@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pac-Man Game</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- My CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="container-fluid py-4 my-linear-background main-container-settings">
+    <div class="row d-flex w-100 justify-content-center">
+        <div class="col-12 text-center justify-content-center align-items-center">
+            <div class="row">
+                <div class="col text-center">
+                    <h1 class="text-white mb-4">My Pac-Man Game</h1>
+                </div>
+            </div>
+
+
+            <div class="status-bar">
+                <h2 id="lives" class="text-light">Lives: 3</h2> <!-- Lives counter -->
+                <h2 id="playedCount" class="text-light">Played: 0</h2> <!-- Times Played Counter -->
+                <h2 id="winCount" class="text-light">Won: 0</h2> <!-- Win Counter -->
+                
+                
+            </div>
+            
+
+            
+            <div class="row">
+                <div class="coltext-center status-bar mb-2">
+                    <h2 id="score" class="text-light">Score: 0</h2> <!-- Score counter -->
+                    <button id="playAgainButton" class="btn btn-lg btn-success btn-lg w-50"><h2>Play Again</h2></button>
+                    <h2 id="LossCount" class="text-light">Lost: 0</h2> <!-- Loss Counter -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex align-items-center justify-content-center text-center">
+                    <canvas id="myPacManGame" class="mb-3"></canvas>
+                </div>
+            </div>
+            <div id="gameOverMessage" class="row">
+                <div class="col text-center">
+                    <!-- <h2 class="text-warning">GAME OVER</h2> -->
+                    <div id="gameOverMessage" class="btn btn-lg btn-warning text-white text-center w-100 mt-3 mb-3 no-cursor"><h2>Game Over !</h2></div> <!-- Game Over Message -->
+                    <div id="winMessage" class="btn btn-lg btn-success text-center d-none no-cursor"><h2>You Win !</h2></div> <!-- Win Message -->
+                    
+                </div>
+            </div>
+
+
+            <div class="">
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+<script type="module" src="js/game.js"></script>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
+

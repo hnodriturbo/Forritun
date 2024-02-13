@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>fylki af objectum</title>
+</head>
+<body>
+<p> Sjá console í vafra </p>
+	
+<script type="text/javascript">
+	
+let concertEvents = []; // búum til fylki sem mun geyma objects.
+	
+fetch('https://apis.is/concerts')   // ekki til lengur :(
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' + response.status);
+        return;
+      }
+      // Examine the text in the response
+      response.json().then(function(data) {
+	  for(let i = 0; i<data.results.length; i++){
+		  concertEvents.push({
+			name:data.results[i].eventDateName,
+			where:data.results[i].eventHallName,
+			imageSrc:data.results[i].imageSource
+		  });
+	  }
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
+
+ </script>
+ </body>
+</html>
+
