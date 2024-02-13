@@ -311,7 +311,7 @@ body, html {
     border-radius: 15px;
 
     font-size: min(max(20px, 1.6vw), 24px);
-    /* color: #f8f9fa; */
+
 
     justify-content: center;
     align-items: center;
