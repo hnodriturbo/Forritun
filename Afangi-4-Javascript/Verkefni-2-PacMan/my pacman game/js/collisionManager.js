@@ -5,7 +5,6 @@
 
 
 import { canvasWidth, canvasHeight } from "./game.js";
- 
 
 class collisionManager {
     constructor(pacMan, ghosts, dots, entityManager) {
@@ -13,8 +12,16 @@ class collisionManager {
         this.ghosts = ghosts;
         this.dots = dots;
         this.entityManager = entityManager;
+
+        this.lastDot = false;
     }
 
+    reset() {
+        for (const ghost of Object.values(this.ghosts)) {
+            ghost.reset();
+        }
+
+    }
     checkAllCollisions() {
         const collidedGhost = this.checkGhostCollisions();
         if (collidedGhost) {
@@ -72,6 +79,7 @@ class collisionManager {
 
     // Method for check for dot collision and splice the dot and add point for eaten dot
     checkDotCollisions() {
+        
         for (let i = this.dots.length - 1; i >= 0; i--) {
             let dx = this.pacMan.x - this.dots[i].x;
             let dy = this.pacMan.y - this.dots[i].y;
@@ -80,9 +88,12 @@ class collisionManager {
             let distance = Math.sqrt(dx * dx + dy * dy);
 
             if (distance < this.pacMan.radius + this.dots[i].radius) {
-                // Here is a collition detected, PacMan eats the dot
-                this.pacMan.eatDot(); // Add 1 to his score
-                this.dots.splice(i, 1) // Remove the dot from the array
+                // Here is a collition detected, PacMan eats the dot           
+                this.pacMan.eatDot();
+                this.dots.splice(i, 1); // Remove the dot from the array
+                if (this.dots.length == 0) {
+                    this.lastDot = true;
+                }
             }
         }
     }
@@ -115,22 +126,23 @@ class collisionManager {
             this.pacMan.y = canvasHeight - this.pacMan.radius; 
         }
     }
-
-    // Method for the ghost canvas collision. If collition, reverse direction
     ghostCanvasCollision(ghost) {
-        if (ghost.x <= 0 || ghost.x + ghost.width >= canvasWidth) {
-            ghost.vx *= -1; // Reverse horizontal velocity
-            // Debug: Log horizontal velocity update
-            /* console.log(`Collision - Ghost ${ghost.name}: x=${ghost.x}, y=${ghost.y}, vx=${ghost.vx}, vy=${ghost.vy}`); */
+        // Detect collision with left or right canvas boundaries
+        if (ghost.x <= 0) {
+            ghost.setRandomDirection('left');
+        } else if (ghost.x + ghost.width >= canvasWidth) {
+            ghost.setRandomDirection('right');
         }
-        
-        if (ghost.y <= 0 || ghost.y + ghost.height >= canvasHeight) {
-            ghost.vy *= -1; // Reverse vertical velocity
-            // Debug: Log vertical velocity update
-            /* console.log(`Collision - Ghost ${ghost.name}: x=${ghost.x}, y=${ghost.y}, vx=${ghost.vx}, vy=${ghost.vy}`); */
+    
+        // Detect collision with top or bottom canvas boundaries
+        if (ghost.y <= 0) {
+            ghost.setRandomDirection('top');
+        } else if (ghost.y + ghost.height >= canvasHeight) {
+            ghost.setRandomDirection('bottom');
         }
     }
-        
+    
+    
 
 
 }

@@ -1,3 +1,11 @@
+<!-- /* ########## Hreiðar Pétursson ########## */-->
+<!-- /*  ######## Javascript Áfanginn ########  */-->
+<!-- /*   ######### Skilaverkefni 4 #########   */-->
+<!-- /*    ######### Product List ##########    */-->
+<!-- /*     #######   Febrúar 2024   ######     */-->
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,8 +43,8 @@
             <div class="row">
                 <div class="coltext-center status-bar mb-2">
                     <h2 id="score" class="text-light">Score: 0</h2> <!-- Score counter -->
-                    <button id="playAgainButton" class="btn btn-lg btn-success btn-lg w-50"><h2>Play Again</h2></button>
-                    <h2 id="LossCount" class="text-light">Lost: 0</h2> <!-- Loss Counter -->
+                    <button id="playAgainButton" class="btn btn-lg btn-success btn-lg w-50 d-none"><h2>Play Again</h2></button>
+                    <h2 id="lossCount" class="text-light">Lost: 0</h2> <!-- Loss Counter -->
                 </div>
             </div>
             <div class="row">
@@ -44,11 +52,11 @@
                     <canvas id="myPacManGame" class="mb-3"></canvas>
                 </div>
             </div>
-            <div id="gameOverMessage" class="row">
+            <div class="row">
                 <div class="col text-center">
                     <!-- <h2 class="text-warning">GAME OVER</h2> -->
-                    <div id="gameOverMessage" class="btn btn-lg btn-warning text-white text-center w-100 mt-3 mb-3 no-cursor"><h2>Game Over !</h2></div> <!-- Game Over Message -->
-                    <div id="winMessage" class="btn btn-lg btn-success text-center d-none no-cursor"><h2>You Win !</h2></div> <!-- Win Message -->
+                    <div id="gameOverMessage" class="btn btn-lg btn-warning text-white text-center w-100 mt-1 no-cursor d-none p-3 my-border-radius"><h1>Game Over !</h1></div> <!-- Game Over Message -->
+                    <div id="winMessage" class="btn btn-lg btn-success text-center d-none no-cursor w-100 mt-1 p-3 my-border-radius"><h1>You Win !</h1></div> <!-- Win Message -->
                     
                 </div>
             </div>

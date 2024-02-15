@@ -23,7 +23,7 @@ const pacMan = {
 
         // Lives, speed and score
         this.lives = 3,
-        this.speed = 5,
+        this.speed = 2,
         this.score = 0,
 
         // Extras
@@ -35,7 +35,12 @@ const pacMan = {
 
 
     },
-
+    reset() {
+        this.lives = 3;
+        this.speed = 2;
+        this.score = 0;
+        this.visible = true;
+    },
 
 
     move() {

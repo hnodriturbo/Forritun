@@ -35,18 +35,31 @@ class Game {
         // Create the entity manager
         this.entityManager = new entityManager(this.ctx, canvasWidth, canvasHeight);
 
-
+        // Necessary for when I make instance of collisionManager later
         this.collisionManager = null;
  
+        // RequestId for Animation Frame
         this.requestId = null;
 
+        // Game freezing flag - Stopping ghosts + pacman from moving
         this.gamePaused = false;
+        
+        // For when pacman wins
+        this.pacManWinsFlag = false;
 
+        // Initialization logic...
+        this.boundHandleKeyDown = this.handleKeyDown.bind(this);
+        this.boundRestartGame = this.restartGame.bind(this);
+
+        // Load ghost sprites & start game
         this.loadSpritesAndStartGame();
-        this.setupEventListeners();
+        
+        // Bind the gameLoop
         this.gameLoop = this.gameLoop.bind(this);
 
-  
+        // Initial call to the manageEventListeners
+        this.manageEventListeners(true);
+
             
     }
 
@@ -68,6 +81,8 @@ class Game {
 
             console.log("Now the this.start() function will be executed.");
             this.start();
+
+            /* this.manageEventListeners(true); */
         };
     }
 
@@ -82,81 +97,51 @@ class Game {
         );
     }
 
-
-    setupEventListeners() {
-        document.getElementById('playAgainButton').addEventListener('click', () => {
-            this.restartGame();
-            this.toggleMessage(false, true); // Hide win message if shown
-            this.toggleMessage(false, false); // Hide lose message if shown
-        
-        });
-        document.addEventListener('keydown', (event) => this.handleKeyDown(event))
-    }
-
-
-    handleKeyDown(event) {
-        if (event.key === 'ArrowLeft') {
-            this.entityManager.pacMan.direction = 'left';
-        } else if (event.key === 'ArrowRight') {
-            this.entityManager.pacMan.direction = 'right';
-        } else if (event.key === 'ArrowUp') {
-            this.entityManager.pacMan.direction = 'up';
-        } else if (event.key === 'ArrowDown') {
-            this.entityManager.pacMan.direction = 'down';
-        }
-    }
-    
-
     start() {
+        // Cancel any existing animation frame requests
+        if (this.requestId) {
+            cancelAnimationFrame(this.requestId);
+        }
         this.requestId = requestAnimationFrame(() => this.gameLoop());
         this.pacManFreePass(); // 6 second free pass at the beginning
-        played++;
+        played++
     }
         
 
+
     updateGame() {
+
+        this.entityManager.updateEntities(this.gamePaused);
+
         const collidedGhost = this.collisionManager.checkAllCollisions();
         if (collidedGhost) {
-            this.pacManDies(collidedGhost);
+            this.pacManDies();
         }
-        this.entityManager.updateEntities(this.gamePaused); // Updates Pac-Man, ghosts and dots
 
-        /* this.collisionManager.checkAllCollisions(); */ // This constantly checks for the collisions
+        if (this.entityManager.pacMan.eatDot) {
+            this.updateGameStats(played, wins, losses);
+        }
 
-    }
-    
-/* 
-    updateGameStats(lives, score) {
-        document.getElementById('lives').textContent = 'Lives: ' + lives;
-        document.getElementById('score').textContent = 'Score: ' + score;
-    }
- */
+        if (this.collisionManager.lastDot) {
+            this.pacManWinsFlag = true;
+            cancelAnimationFrame(this.requestId);
+            this.pacManWins();
+            
+        }
 
-    clearCanvas() {
-        // Clear the canvas
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.fillStyle = 'rgba(0, 100, 240, 0.2)'; // LightBlue color
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
     gameLoop() {
-        /* console.log('Entering game loop...');  */// Debug statement worked
         // Start by clearing the canvas
         this.clearCanvas();
-
         // Update game state
         this.updateGame();
-
-        // Request Animation Framr for smoother animation
-        this.requestId = requestAnimationFrame(this.gameLoop);
-    }
-
-    /* Er að vinna með event listeners, pacmanwins, pacmanloses, restartgame, updategamestats gefur villu, dots gefa ekki score, færa score yfir í game ? */
-
-
-    // Restart game by creating a new instance of the game class
-    restartGame() {
-        new this.constructor();
+        /* this.updateGameStats(); */
+        // Request Animation Frame for smoother animation
+        if (!this.pacManWinsFlag) {
+            this.requestId = requestAnimationFrame(() => this.gameLoop());
+        }
+        
     }
 
 
@@ -167,23 +152,48 @@ class Game {
     }
     
 
-    pacManWins() {
-        // First increment the counter of wins
-        wins++;
-        // Cancel the animation frame
-        cancelAnimationFrame(this.requestId);
-        // Clear the canvas
-        this.clearCanvas();
-        // Show win message by saying true to show and true to win
-        this.toggleMessage(true, true);
 
+
+    // Clear the canvas
+    clearCanvas() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.fillStyle = 'rgba(0, 100, 240, 0.2)'; // LightBlue color
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
 
+    /* -------------------------------------------------------- */
+    /* ----- ----- Pac-Man Winning & Losing methods ----- ----- */
+    /* -------------------------------------------------------- */
+
+    pacManWins() {
+        if (!this.pacManWinsFlag) return; // Prevent loop
+        
+        // Increment the counter of wins
+        wins++;
+        console.log('incremented the wins counter')
+
+        this.updateGameStats(played, wins, losses);
+        
+        // Cancel the animation frame
+        cancelAnimationFrame(this.requestId);
+        console.log('cancelled the animation frame ID: ' + this.requestId)
+        
+        // Clear the canvas
+        this.clearCanvas();
+        
+        // Show win message by saying true to show and true to win
+        this.toggleMessage(false, true);
+    }
+
     pacManLoses() {
+
         // First increment the counter of losses
         losses++
-        // Cancel the animation frame
+        // Update game stats
+        this.updateGameStats(played, wins, losses);
+
+        // Cancel the animation frame just in case
         cancelAnimationFrame(this.requestId);
         // Clear the canvas
         this.clearCanvas();
@@ -191,31 +201,13 @@ class Game {
         this.toggleMessage(true, false);
     }
 
-    // Updating counters
-    updateGameStats(played, wins, losses, lives, score) {
-        document.getElementById('playedCount').textContent = `Played: ${played}`;
-        document.getElementById('winCount').textContent = `Won: ${wins}`;
-        document.getElementById('lossCount').textContent = `Lost: ${losses}`;
-        document.getElementById('lives').textContent = `Lives: ${lives}`;
-        document.getElementById('score').textContent = `Score: ${score}`;
-    }
 
 
-    // Toggle win message or game over message
-    toggleMessage(show, isWin) {
-        const messageElement = document.getElementById(isWin ? 'winMessage' : 'gameOverMessage');
-        if (show) {
-            messageElement.classList.remove('d-none');
-        }
-        else {
-            messageElement.classList.add('d-none');
-        }
-    }
 
-    pacManDies(collidedGhost) {
-        console.log(`Pac-Man had a collision with ${collidedGhost.name} ghost!`);
+
+    pacManDies() {
         this.entityManager.pacMan.removelive();
-        this.updateGameStats(this.entityManager.pacMan.lives, this.entityManager.pacMan.score);
+        this.updateGameStats(played, wins, losses);
     
 
         // This stops the movements of ghosts and pacman
@@ -226,7 +218,7 @@ class Game {
         this.entityManager.pacMan.visible = true;
     
         if (this.entityManager.pacMan.lives == 0) {
-           this.gameOver();
+           this.pacManLoses();
         }
     
         else {
@@ -268,18 +260,164 @@ class Game {
     }
 
 
+
+
+
+    restartGame() {
+        // Remove the existing event listeners
+        this.manageEventListeners(false);
+
+        // Reset entityManager, collisionManager, gamePaused
+        this.entityManager.reset(); // Reset entities
+        this.collisionManager.reset(); // Reset collision state
+        this.gamePaused = false;
+        this.pacManWinsFlag = false;
+        this.toggleMessage(false, false)
+        // Add the event listeners
+        this.manageEventListeners(true);
+        // Restart the game loop
+        this.loadSpritesAndStartGame();
+    }
+
+
+
+    
+    // Update counters
+    updateGameStats(played, wins, losses) {
+        const lives = this.entityManager.pacMan.lives;
+        const score = this.entityManager.pacMan.score;
+        document.getElementById('playedCount').textContent = `Played: ${played}`;
+        document.getElementById('winCount').textContent = `Won: ${wins}`;
+        document.getElementById('lossCount').textContent = `Lost: ${losses}`;
+        document.getElementById('lives').textContent = `Lives: ${lives}`;
+        document.getElementById('score').textContent = `Score: ${score}`;
+    }
+
+
+    // Toggle win message or game over message
+    toggleMessage(gameOverMessageDisplay, youWinMessageDisplay) {
+
+        const gameOverMessage = document.getElementById('gameOverMessage');
+        const youWinMessage = document.getElementById('winMessage');
+        const playAgain = document.getElementById('playAgainButton')
+
+        if (gameOverMessageDisplay) {
+            gameOverMessage.classList.remove('d-none');
+            playAgain.classList.remove('d-none');
+        }
+        if (youWinMessageDisplay) {
+            youWinMessage.classList.remove('d-none');
+            playAgain.classList.remove('d-none');
+        }
+        
+        if (!gameOverMessageDisplay && !youWinMessageDisplay) {
+            gameOverMessage.classList.add('d-none');
+            youWinMessage.classList.add('d-none');
+            playAgain.classList.add('d-none');
+        }
+
+    }
+
+
+
+
+
+    handleKeyDown(event) {
+        if (event.key === 'ArrowLeft') {
+            this.entityManager.pacMan.direction = 'left';
+        } else if (event.key === 'ArrowRight') {
+            this.entityManager.pacMan.direction = 'right';
+        } else if (event.key === 'ArrowUp') {
+            this.entityManager.pacMan.direction = 'up';
+        } else if (event.key === 'ArrowDown') {
+            this.entityManager.pacMan.direction = 'down';
+        }
+    }
+
+    manageEventListeners(shouldAdd) {
+        const playAgainButton = document.getElementById('playAgainButton');
+
+        if (shouldAdd) {
+            document.addEventListener('keydown', this.boundHandleKeyDown);
+            playAgainButton.addEventListener('click', this.boundRestartGame);
+        } else {
+            document.removeEventListener('keydown', this.boundHandleKeyDown);
+            playAgainButton.removeEventListener('click', this.boundRestartGame);
+        }
+    }
+
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const game = new Game();
 });
+/* 
+    // Setup Event Listeners    
+    setupEventListeners() {
+        // Remove existing 'click' event listener from 'playAgainButton' if it exists
+        const playAgainButton = document.getElementById('playAgainButton');
+
+        // playAgainButton.removeEventListener('click', this.playAgain());
+
+        playAgainButton.addEventListener('click', this.playAgain());
+        // Re-bind and add 'click' event listener to 'playAgainButton'
+
+        
+        // Properly manage 'keydown' event listener to avoid duplicates
+        if (this.boundHandleKeyDown) {
+            document.removeEventListener('keydown', this.boundHandleKeyDown);
+        }
+        this.boundHandleKeyDown = (event) => this.handleKeyDown(event);
+        document.addEventListener('keydown', this.boundHandleKeyDown);
+    }
+
+    playAgain() {
+        this.restartGame();
+        this.toggleMessage(false, true); // Hide win message if shown
+        this.toggleMessage(false, false); // Hide lose message if shown
+    };
+
+ */
+
+/*     
+    setupEventListeners() {
+        document.getElementById('playAgainButton').addEventListener('click', () => {
+            this.restartGame();
+            this.toggleMessage(false, true); // Hide win message if shown
+            this.toggleMessage(false, false); // Hide lose message if shown
+        
+        });
+        document.addEventListener('keydown', (event) => this.handleKeyDown(event))
+    }
+
+ */
 
 
+/* 
+        const messageElement = document.getElementById(isWin ? 'winMessage' : 'gameOverMessage');
+        const playAgainButton = document.getElementById('playAgainButton');
+         */
+/*         
+        if (show) {
+            messageElement.classList.remove('d-none');
+            playAgainButton.classList.remove('d-none');
+        }
+        if (hide) {
+            messageElement.classList.add('d-none');
+            playAgainButton.classList.add('d-none');
+        }
 
-
-
+         */
 /*         
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.fillStyle = 'rgba(0, 100, 240, 0.2)'; // LightBlue color
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height); 
 */
+
+/* 
+        this.gamePaused = true
+
+        setTimeout(() => {
+            this.gamePaused = false;
+        }, 5000)
+         */

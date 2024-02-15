@@ -16,27 +16,39 @@ class entityManager {
 
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
-        // Get access to the game instance
-        /* this.game = game; */
+
         // Create the object for the ghosts
         this.ghosts = {};
         // Array to hold the dot instances
         this.dots = []; 
-        /* this.ghostSprites = ghostSprites; */
+
         // Flag to indicate if ghosts and dots are initialized
         this.ghostsInitialized = false;
         this.dotsInitialized = false;
 
-        // Initialize the ghosts as in of make instances of them
-        /* this.createGhosts(); */
-        // Prepare the dots
-        /* this.createDots(); */
+        /* this.lastDot = false; */
 
         // First initialize the pacman properties
         pacMan.initialize(canvasWidth, canvasHeight);
         this.pacMan = pacMan;
+        console.log(pacMan)
+
 
         
+    }
+
+    // Method for resetting
+    reset() {
+        this.ghosts = {}; // Resets ghosts object
+        this.dots = []; // Clears dots array
+        console.log(this.dots)
+        this.ghostsInitialized = false;
+        this.dotsInitialized = false;
+        this.pacMan = null;
+        pacMan.initialize(this.canvasWidth, this.canvasHeight); // Reinitialize Pac-Man
+        this.pacMan = pacMan;
+        console.log(pacMan)
+        this.pacMan.reset();
     }
 
     createGhosts(ghostSprites) {
@@ -73,8 +85,6 @@ class entityManager {
         this.drawPacMan(gamePaused);
         this.drawDots();
     }
-
-
 
 
 
