@@ -1,0 +1,20 @@
+.my-nav-styles {
+    border: 2px solid #6c757d; /* Bootstrap's btn-secondary color */
+    box-shadow: 0 0 8px 0 #6c757d; /* Creates the glowing effect with the same color */
+/*     padding: 10px;
+    margin-bottom: 20px; */
+    /* background-color: white; */ /* Or any color that fits your design */
+    border-radius: 15px;
+}
+
+.my-nav-styles:hover {
+    box-shadow: 0 0 12px 2px #6c757d; /* Larger glow effect on hover */
+}
+
+.my-btn-box-shadow {
+    box-shadow: 0 0 8px 0 #6c757d;
+}
+.my-btn-box-shadow:hover {
+    box-shadow: 0 0 16px 4px #6c757d;
+    border: 0px;
+}
