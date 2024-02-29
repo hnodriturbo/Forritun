@@ -2,9 +2,9 @@
     {
       "name": "Music Fest 2024",
       "description": "A gathering of the best local and international music talents.",
-      "image": "url_to_image/music_fest.jpg",
-      "price": 50,
-      "date": "2024-06-15",
+      "image": "img/music_fest.webp",
+      "price": 50000,
+      "date": "2024-06-",
       "location": {
         "place": "Reykjavik Park",
         "latitude": "64.1466",
@@ -12,82 +12,10 @@
       }
     },
     {
-      "name": "Art Expo",
-      "description": "Experience the avant-garde from upcoming artists around the globe.",
-      "image": "url_to_image/art_expo.jpg",
-      "price": 30,
-      "date": "2024-07-20",
-      "location": {
-        "place": "Harpa Concert Hall",
-        "latitude": "64.1505",
-        "longitude": "-21.9324"
-      }
-    },
-    {
-      "name": "Tech Innovators Conference",
-      "description": "Showcasing cutting-edge technology from around the world.",
-      "image": "url_to_image/tech_innovators.jpg",
-      "price": 100,
-      "date": "2024-08-05",
-      "location": {
-        "place": "Tech Arena",
-        "latitude": "64.1288",
-        "longitude": "-21.8960"
-      }
-    },
-    {
-      "name": "Global Food Festival",
-      "description": "A culinary journey through international cuisines.",
-      "image": "url_to_image/food_festival.jpg",
-      "price": 25,
-      "date": "2024-09-10",
-      "location": {
-        "place": "City Center Plaza",
-        "latitude": "64.1472",
-        "longitude": "-21.9354"
-      }
-    },
-    {
-      "name": "Marathon for Charity",
-      "description": "Run for a cause and help raise funds for charity.",
-      "image": "url_to_image/marathon.jpg",
-      "price": 20,
-      "date": "2024-10-21",
-      "location": {
-        "place": "Old Harbour",
-        "latitude": "64.1555",
-        "longitude": "-21.9476"
-      }
-    },
-    {
-      "name": "Film Festival Premier",
-      "description": "Premieres of critically acclaimed films and documentaries.",
-      "image": "url_to_image/film_festival.jpg",
-      "price": 40,
-      "date": "2024-11-15",
-      "location": {
-        "place": "Cinema City",
-        "latitude": "64.1420",
-        "longitude": "-21.9290"
-      }
-    },
-    {
-      "name": "Book Fair",
-      "description": "Meet your favorite authors and discover new reads.",
-      "image": "url_to_image/book_fair.jpg",
-      "price": 10,
-      "date": "2024-12-05",
-      "location": {
-        "place": "Library Hall",
-        "latitude": "64.1430",
-        "longitude": "-21.9220"
-      }
-    },
-    {
       "name": "Jazz Night",
       "description": "An evening with legendary jazz musicians and ensembles.",
-      "image": "url_to_image/jazz_night.jpg",
-      "price": 60,
+      "image": "img/jazz_festival.webp",
+      "price": 60000,
       "date": "2025-01-20",
       "location": {
         "place": "Jazz Club",
@@ -96,10 +24,70 @@
       }
     },
     {
+      "name": "Art Expo",
+      "description": "Experience the avant-garde from upcoming artists around the globe.",
+      "image": "img/art_expo.webp",
+      "price": 30000,
+      "date": "2024-07-02",
+      "location": {
+        "place": "Harpa Concert Hall",
+        "latitude": "64.1505",
+        "longitude": "-21.9324"
+      }
+    },
+    {
+      "name": "Global Food Festival",
+      "description": "A culinary journey through international cuisines.",
+      "image": "img/food_festival.webp",
+      "price": 25000,
+      "date": "2024-09-10",
+      "location": {
+        "place": "City Center Plaza",
+        "latitude": "64.1472",
+        "longitude": "-21.9354"
+      }
+    },
+    {
+      "name": "Film Festival Premier",
+      "description": "Premieres of critically acclaimed films and documentaries.",
+      "image": "img/film_festival.webp",
+      "price": 40000,
+      "date": "2024-11-15",
+      "location": {
+        "place": "Cinema City",
+        "latitude": "64.1420",
+        "longitude": "-21.9290"
+      }
+    },
+    {
+      "name": "Yoga Retreat",
+      "description": "A weekend of relaxation, meditation, and yoga.",
+      "image": "img/yoga_retreat.webp",
+      "price": 70000,
+      "date": "2025-03-25",
+      "location": {
+        "place": "Tranquil Gardens",
+        "latitude": "64.1380",
+        "longitude": "-21.9300"
+      }
+    },
+    {
+      "name": "Book Fair",
+      "description": "Meet your favorite authors and discover new reads.",
+      "image": "img/book_fair.webp",
+      "price": 10000,
+      "date": "2024-12-05",
+      "location": {
+        "place": "Library Hall",
+        "latitude": "64.1430",
+        "longitude": "-21.9220"
+      }
+    },
+    {
       "name": "Science Exhibition",
       "description": "Explore the wonders of science and innovation.",
-      "image": "url_to_image/science_exhibition.jpg",
-      "price": 15,
+      "image": "img/science_exhibition.webp",
+      "price": 15000,
       "date": "2025-02-10",
       "location": {
         "place": "Science Museum",
@@ -108,15 +96,27 @@
       }
     },
     {
-      "name": "Yoga Retreat",
-      "description": "A weekend of relaxation, meditation, and yoga.",
-      "image": "url_to_image/yoga_retreat.jpg",
-      "price": 70,
-      "date": "2025-03-25",
+      "name": "Tech Innovators Conference",
+      "description": "Showcasing cutting-edge technology from around the world.",
+      "image": "img/tech_innovators.webp",
+      "price": 10000,
+      "date": "2024-08-05",
       "location": {
-        "place": "Tranquil Gardens",
-        "latitude": "64.1380",
-        "longitude": "-21.9300"
+        "place": "Tech Arena",
+        "latitude": "64.1288",
+        "longitude": "-21.8960"
+      }
+    },
+    {
+      "name": "Marathon for Charity",
+      "description": "Run for a cause and help raise funds for charity.",
+      "image": "img/marathon_for_charity.webp",
+      "price": 20000,
+      "date": "2024-10-21",
+      "location": {
+        "place": "Old Harbour",
+        "latitude": "64.1555",
+        "longitude": "-21.9476"
       }
     }
   ]
