@@ -36,7 +36,13 @@
     <script src="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.js"></script>
 
 </head>
+
+
+
+<!-- I love bg-dark color for my webpages. It's soothing and appealing -->
 <body class="bg-dark">
+
+    <!-- Master container holding all other containers. I added a box shadow animation for cool effects -->
     <div class="master-container my-box-shadow-animation">
 
         <!-- Banner Container -->
@@ -63,23 +69,46 @@
             </nav>
 
         </div> <!-- container-fluid -->
-
-
-        <!-- Search box and button &&& the price slider -->
-        <div class="filter-container d-flex justify-content-center mb-4 flex-column align-items-center">
-            <input type="text" id="event-search" class="form-control w-50 mr-2 mb-5" placeholder="Search events...">
-
-            <div id="price-slider" class="w-50"></div>
-
-        </div>
         
+        
+        
+        
+
+
+
+        <!-- Container for the search input field and the search button -->
+        <div class="container-fluid w-100 d-flex justify-content-center align-items-center mb-5 mt-3">
+            <div class="row w-100">
+                <div class="col d-flex justify-content-center align-items-center pl-5 pr-5">
+                    <input type="text" id="event-search" class="form-control w-100" placeholder="Search events...">
+                    <button class="btn btn-info w-25" type="submit" id="searchEvents">Search</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Container for the price range slider -->
+        <div class="container-fluid w-100 d-flex justify-content-center align-items-center">
+            <div class="row w-100">
+                <div class="col d-flex justify-content-center align-items-center flex-column">
+                    <p>Price range: <span id="slider-min-value"></span> - <span id="slider-max-value"></span> kr.-</p>
+                    <div id="price-slider" class="w-75"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
         <!-- Container for the Upcoming Events and event display -->
         <div class="container-fluid mt-5">
             <h1>Upcoming Events</h1>
             <div id="events-container" class="row">
                 <!-- Events loading happens here ! ! ! -->
             </div>
-        </div>
+        </div> <!-- container-fluid mt-5 -->
 
 
 
@@ -87,7 +116,11 @@
         
     </div> <!-- master-container -->
 
-
+<!-- Placeholder for the modal -->
+<div id="eventModal" class="my-modal">
+    <div class="modal-content" id="modalContent">
+    </div>
+</div>
 
 
 
