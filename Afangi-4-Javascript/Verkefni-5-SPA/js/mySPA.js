@@ -5,19 +5,7 @@
 ////////////////////*     #######   SPA  Events   #######     *////////////////////
 
 
-/* 
-// Fetch events function
-function fetchEvents() {
-    fetch('vidburdir.json')
-        .then(response => response.json())
-        .then(events => {
-            displayEvents(events);
-        })
-        .catch(error => {
-            console.error('Error fetching the events: ', error);
-        });
-} */
-
+let allEvents = [];
 
 // Async to fetch events, sort them by price, and display them
 async function fetchEvents() {
@@ -31,9 +19,16 @@ async function fetchEvents() {
         // Sort events by price in ascending order
         events.sort((a, b) => a.price - b.price);
 
-        displayEvents(events); // Display the sorted events
+        // Store fetched events on the global scope
+        allEvents = events;
 
-        initSlider(events); // Initialize the slider
+        // Display the sorted events
+        displayEvents(events);
+        // Initialize the price slider
+        initSlider(events);
+
+        // Now enable the instant search feature
+        searchInstantly();
 
     } catch (error) {
         console.error('Error fetching the events:', error);
@@ -92,6 +87,9 @@ function displayEvents(events) {
                         <p class="modal-card-price">Price: ${event.price} kr.-</p>
                         <p class="modal-card-date">${dayjs(event.date).format('D MMMM YYYY')}</p>
                     </div>
+                    <div class="modal-card-footer d-flex justify-content-center">
+                        <button class="btn btn-lg btn-info">Register To This Event</button>
+                    </div>
                 </div>
                 <span class="close-button">&times;</span>`; // Ensuring the close button is included
         
@@ -135,6 +133,8 @@ function closeModal() {
     modal.style.display = 'none';
 }
 
+
+
 // Event listener to close the modal when clicking anywhere outside the modal
 document.addEventListener('click', function(event) {
     const modal = document.getElementById('eventModal');
@@ -142,29 +142,11 @@ document.addEventListener('click', function(event) {
         closeModal();
     }
 });
-
-/* 
-function openModal() {
-    const modal = document.getElementById('eventModal');
-    modal.style.display = 'flex';
-    modal.style.opacity = 1; // Fade in animation structure
-}
-
-// Function for resetting the modal's state before opening (making sure the opacity is at 0.1)
-function resetModal() {
-    const modal = document.getElementById('eventModal');
-    modal.style.display = 'none';
-    modal.style.opacity = 0.1; // Reset the opacity
-}
-
-function closeModal() {
-    const modal = document.getElementById('eventModal');
-    modal.style.display = 'none';
-}
-
-document.querySelector('.close-button').addEventListener('click', closeModal);
-
- */
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
 
 
 
@@ -172,22 +154,37 @@ document.querySelector('.close-button').addEventListener('click', closeModal);
 
 
 
-
-/* ----- ----- Slider function ----- ----- */
-
+/* ############################################################# */
+   /* ####### ----- ----- Slider function ----- ----- ####### */
+/* ############################################################# */
 function initSlider(events) {
     const slider = document.getElementById('price-slider');
+
+    const prices = events.map(event => event.price);
+    const uniquePrices = [... new Set(prices)].sort((a, b) => a - b); // Get unique prices and sort them
+
     const minPrice = Math.min(...events.map(event => event.price));
     const maxPrice = Math.max(...events.map(event => event.price));
 
+
+
+    // Create the slider
     noUiSlider.create(slider, {
-        start: [minPrice, maxPrice],
+        start: [Math.min(...uniquePrices), Math.max(...uniquePrices)],
         connect: true,
         range: {
-            'min': minPrice,
-            'max': maxPrice
+            'min': Math.min(...uniquePrices),
+            'max': Math.max(...uniquePrices)
         },
-        step: 1
+        step: 1,
+        // Use pips to mark steps on the slider
+        pips: {
+            mode: 'values',
+            values: uniquePrices,
+            density: 4
+        }
+
+
     });
 
     slider.noUiSlider.on('update', function(values, handle) {
@@ -199,21 +196,34 @@ function initSlider(events) {
 
 
 
-/* ATHUGA SEARCH ER EKKI AÐ VIRKA Í AUGNABLIKINU !!!!!! GERA MODAL Í STAÐINN Á MEÐAN ÉG FINN ÚTÚR SEARCH */
-/* Search field Event listener for the input of keystrokes */
+/* ############################################################# */
+   /* ####### ----- ----- Search Function ----- ----- ####### */
+/* ############################################################# */
+/* 
+function searchInstantly() {
+    let inputField = document.getElementById('event-search');
 
-document.getElementById('event-search').addEventListener('input', function() {
-    const searchQuery = this.value.toLowerCase();
-    const filteredEventsBySearch = allEvents.filter(event => event.name.toLowerCase().includes(searchQuery));
-    displayEvents(filteredEventsBySearch);
-});
+    inputField.addEventListener('input', function() {
+        // Set the query to lower case
+        const searchQuery = this.value.toLowerCase();
+        
+        // Use global "events variable for the search"
+        const filteredEventsBySearch = events.filter(event => event.name.toLowerCase().includes(searchQuery));
+        
+        // Then display the events that match and include the letters in the name of the event
+        displayEvents(filteredEventsBySearch);
 
-
-
-
-
-
-
+    });
+}
+ */
+function searchInstantly() {
+    let inputField = document.getElementById('event-search');
+    inputField.addEventListener('input', function() {
+        const searchQuery = this.value.toLowerCase();
+        const filteredEventsBySearch = allEvents.filter(event => event.name.toLowerCase().includes(searchQuery));
+        displayEvents(filteredEventsBySearch);
+    });
+}
 
 /* ---------- Extras - Toggle between classes for box shadow animation effect ---------- */
 
@@ -269,6 +279,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Box shadow effect on menu buttons on mouse hover
     initializeBoxShadowToggle()
 
+    /* searchInstantly(); */
+
 
 });
 
@@ -295,6 +307,77 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* -------------- Storage ----------- */
+
+
+
+/* 
+// Fetch events function
+function fetchEvents() {
+    fetch('vidburdir.json')
+        .then(response => response.json())
+        .then(events => {
+            displayEvents(events);
+        })
+        .catch(error => {
+            console.error('Error fetching the events: ', error);
+        });
+} */
+
+
+
+/* 
+        // Add tooltips here to display the values
+        tooltips: [true, true],
+        format: {
+            to: function(value) {
+                return value.toFixed(0);
+            },
+            from: function(value) {
+                return Number(value);
+            }
+        }
+ */
+
+
+/*         const minValueElement = document.getElementById('slider-min-value');
+        const maxValueElement = document.getElementById('slider-max-value');
+
+        minValueElement.innerHTML = values[0];
+        maxValueElement.innerHTML = values[1];
+
+        const [minValue, maxValue] = values.map(value => parseFloat(value)); */
+
+
+
+
+
+
+
+
+
+
+/* 
+function openModal() {
+    const modal = document.getElementById('eventModal');
+    modal.style.display = 'flex';
+    modal.style.opacity = 1; // Fade in animation structure
+}
+
+// Function for resetting the modal's state before opening (making sure the opacity is at 0.1)
+function resetModal() {
+    const modal = document.getElementById('eventModal');
+    modal.style.display = 'none';
+    modal.style.opacity = 0.1; // Reset the opacity
+}
+
+function closeModal() {
+    const modal = document.getElementById('eventModal');
+    modal.style.display = 'none';
+}
+
+document.querySelector('.close-button').addEventListener('click', closeModal);
+
+ */
 
 
 
