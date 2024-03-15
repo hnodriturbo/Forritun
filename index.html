@@ -77,9 +77,9 @@
 
 
         <!-- Container for the search input field and the search button -->
-        <div class="container-fluid w-100 d-flex justify-content-center align-items-center mb-5 mt-3">
-            <div class="row w-100">
-                <div class="col d-flex justify-content-center align-items-center pl-5 pr-5">
+        <div class="container-fluid w-100 d-flex justify-content-center align-items-center mb-5 mt-3" id="containerSearch">
+            <div class="row w-100" id="containerSearchRow">
+                <div class="col d-flex justify-content-center align-items-center pl-5 pr-5" id="containerSearchRowCol">
                     <input type="text" id="event-search" class="form-control w-100" placeholder="Search events...">
                     <button class="btn btn-info w-25" type="submit" id="searchEvents">Search</button>
                 </div>
@@ -88,10 +88,9 @@
 
 
         <!-- Container for the price range slider -->
-        <div class="container-fluid w-100 d-flex justify-content-center align-items-center">
-            <div class="row w-100">
+        <div class="container-fluid w-100 d-flex justify-content-center align-items-center" id="containerPriceSlider">
+            <div class="row w-100" id="rowPriceSlider">
                 <div class="col d-flex justify-content-center align-items-center flex-column">
-                    <p>Price range: <span id="slider-min-value"></span> - <span id="slider-max-value"></span> kr.-</p>
                     <div id="price-slider" class="w-75"></div>
                 </div>
             </div>
@@ -104,7 +103,10 @@
 
         <!-- Container for the Upcoming Events and event display -->
         <div class="container-fluid mt-5">
-            <h1>Upcoming Events</h1>
+            <div class="row d-flex justify-content-center p-3 mt-5">
+                <h1>Upcoming Events</h1>
+            </div>
+            
             <div id="events-container" class="row">
                 <!-- Events loading happens here ! ! ! -->
             </div>
@@ -118,7 +120,7 @@
 
 <!-- Placeholder for the modal -->
 <div id="eventModal" class="my-modal">
-    <div class="modal-content" id="modalContent">
+    <div class="modal-content" id="modalContent" style="border-radius: 25px;">
     </div>
 </div>
 

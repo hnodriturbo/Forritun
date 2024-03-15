@@ -269,11 +269,12 @@ background is not changeable or editable i think. Fix tomorrow!!! */
 }
 
 .modal-content {
-
+    
     border: 1px solid #888;
     width: 40%; /* Adjustable */
     height: fit-content;
     max-width: 400px;
+   
     /* I need to use relative so i can put the close button above the card */
     position: relative;
     z-index: 1001; 
