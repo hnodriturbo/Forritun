@@ -1,0 +1,22 @@
+{
+  "name": "coding",
+  "version": "1.0.0",
+  "description": "MittProject",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hnodriturbo/Forritun.git"
+  },
+  "author": "Hreidar Petursson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hnodriturbo/Forritun/issues"
+  },
+  "homepage": "https://github.com/hnodriturbo/Forritun#readme",
+  "dependencies": {
+    "bootstrap-icons": "^1.10.5"
+  }
+}
